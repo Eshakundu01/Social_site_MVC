@@ -1,5 +1,5 @@
 <?php
 
-echo "Hello";
+require_once 'system/init.php';
 
 ?>
