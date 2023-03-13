@@ -1,3 +1,94 @@
 * {
   box-sizing: border-box;
 }
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
+.bg {
+  background-image: url('../images/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 21px 0;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.content {
+  background-color: #ffff;
+  padding: 25px;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.icon {
+  width: 25%;
+  border-radius: 50%;
+}
+
+.heading {
+  color: #5d386c;
+  font-size: 45px;
+  margin: 10px 0;
+  font-family: 'Dancing Script';
+}
+
+.content p {
+  color: rgb(143, 137, 137);
+  margin: 5px 0;
+  padding: 5px 0;
+  font-family: 'Moon Dance';
+  font-size: 30px;
+}
+
+.input {
+  font-family: 'Moon Dance';
+  font-size: 25px;
+  color: #9c4782;
+  padding: 15px;
+  font-weight: bolder;
+}
+
+.entries {
+  padding: 15px 10px;
+  width: 65%;
+  font-size: 15px;
+}
+
+.error {
+  color: rgb(204, 14, 14);
+}
+
+.connect {
+  padding: 5px;
+  font-family: 'Moon Dance';
+  font-size: 25px;
+  color: rgb(143, 137, 137);
+}
+
+.forgot {
+  text-align: right;
+  padding-right: 9%;
+}
+
+.link {
+  color: #9c4782;
+}
+
+.btn {
+  border: 2px solid #111;
+  color: #111;
+  background: linear-gradient(to right,#4a3060,#885e8e,#201e45);
+  cursor: pointer;
+  padding: 10px 35px;
+  font-size: 25px;
+  font-weight: 900;
+  font-family: 'Moon Dance';
+  border-radius: 45px;
+}

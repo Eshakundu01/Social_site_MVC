@@ -1,7 +1,7 @@
 <?php
 
 spl_autoload_register(function($className) {
-  include 'classes/' . $className . '.php';
+  require_once 'classes/' . $className . '.php';
 });
 
 $route_obj = new route;
