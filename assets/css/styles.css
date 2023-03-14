@@ -49,7 +49,7 @@ body{
 
 .input {
   font-family: 'Moon Dance';
-  font-size: 25px;
+  font-size: 20px;
   color: #9c4782;
   padding: 15px;
   font-weight: bolder;
@@ -59,10 +59,12 @@ body{
   padding: 15px 10px;
   width: 65%;
   font-size: 15px;
+  color: rgb(143, 137, 137);
 }
 
 .error {
   color: rgb(204, 14, 14);
+  padding: 5px;
 }
 
 .connect {
@@ -91,4 +93,26 @@ body{
   font-weight: 900;
   font-family: 'Moon Dance';
   border-radius: 45px;
+}
+
+.gender {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: inline;
+}
+
+.gender li {
+  display: inline-block;
+  color: #4a3060;
+  font-size: 30px;
+  font-family: 'Moon Dance';
+}
+
+.select {
+  accent-color: #885e8e;
+}
+
+.back {
+  text-decoration: none;
 }
