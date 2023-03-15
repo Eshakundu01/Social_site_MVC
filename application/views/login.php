@@ -18,11 +18,11 @@
   <div class="bg">
     <div class="container">
       <div class="content">
-        <div><img src="<?php echo BASEURL; ?>/assets/images/icon.png" class="icon"></div>
+        <div><img src="<?php echo BASEURL; ?>/assets/images/icon.png" class="icon" alt="logo"></div>
         <h2 class="heading">WELCOME</h2>
-        <p>Enter your username and password to connect with others...</p>
+        <p>Enter your emailid and password to connect with others...</p>
         <form action="" method="POST">
-          <div class="input">USERNAME: <input type="text" name="user" class="entries" placeholder="Enter username"></div>
+          <div class="input">EMAILID: <input type="text" name="user" class="entries" placeholder="Enter email address"></div>
           <span class="error"></span>
 
           <div class="input">
@@ -34,7 +34,7 @@
 
           <div><input type="submit" name="login" class="btn" value="LOGIN"></div>
           <div class="connect">Don't have a account yet?
-            <a href="<?php echo BASEURL; ?>/home/viewRegister" class="link">Register Now</a>
+            <a href="<?php echo BASEURL; ?>/home/register" class="link">Register Now</a>
           </div>
         </form>
       </div>

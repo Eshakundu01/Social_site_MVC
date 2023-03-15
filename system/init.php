@@ -5,6 +5,6 @@ spl_autoload_register(function($className) {
 });
 
 // Initialized the route object
-$route_obj = new route;
+$routeObj = new route;
 
 ?>

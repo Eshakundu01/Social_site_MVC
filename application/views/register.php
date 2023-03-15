@@ -18,7 +18,7 @@
   <div class="bg">
     <div class="container">
       <div class="content">
-        <div><img src="<?php echo BASEURL; ?>/assets/images/icon.png" class="icon"></div>
+        <div><img src="<?php echo BASEURL; ?>/assets/images/icon.png" class="icon" alt="logo"></div>
         <h2 class="heading">JOIN US!</h2>
         <p>Fill in the details below to connect with us...</p>
         <form action="" method="POST">
@@ -49,7 +49,7 @@
 
           <div>
             <input type="submit" name="register" class="btn" value="REGISTER">
-            <a href="<?php echo BASEURL; ?>/home/index" class="btn back">GO BACK</a>
+            <a href="<?php echo BASEURL; ?>" class="btn back">GO BACK</a>
           </div>
         </form>
       </div>

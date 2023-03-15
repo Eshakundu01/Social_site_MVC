@@ -10,9 +10,10 @@ class home
 {
   /**
    * 
-   * index is a function which checks if login page is present in the views
-   * folder and if it is present then the page is embedded
+   * It checks if login page is present in the views
+   * folder and if it is present then the page is embedded.
    * 
+   * @return void
    */
 
   public function index() {
@@ -23,14 +24,17 @@ class home
 
   /**
    * 
-   * viewRegister is a function which checks if register page is present in the 
-   * views folder and if it is present then the page is embedded
+   * It checks if register page is present in the views folder and 
+   * if it is present then the page is embedded.
    * 
+   * @return void
    */
   
-  public function viewRegister() {
+  public function register() {
     if (file_exists('application/views/register.php')) {
       require_once 'application/views/register.php';
     }
   }
 }
+
+?>

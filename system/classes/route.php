@@ -1,8 +1,8 @@
 <?php
 
 /**
- * route class which separates the controller, methods and parameters from
- * the url
+ * 
+ * It separates the controller, methods and parameters from the url
  * 
  */
 
@@ -10,24 +10,35 @@ class route
 {
   /**
    * 
-   * @var $controller: stores the controller name
-   * it initially consists of default value home
-   * @var $method: stores the method name
-   * it initially consists of default value index
-   * @var $param: stores parameters that are passed in the url
+   * @var string
+   * Stores the controller name, it initially consists of default value home.
    * 
    */
 
   protected $controller = "home";
+
+  /**
+   * @var string 
+   * Stores the method name, it initially consists of default value index.
+   * 
+   */
+
   protected $method = "index";
+
+  /**
+   * 
+   * @var array
+   * Stores parameters that are passed in the url.
+   * 
+   */
   protected $param = [];
   
   /**
    * 
-   * constructor
    * This separates the controller name, method name and parameters and stores
    * in the variables, after that the callback function is used.
    * 
+   * @return void
    */
 
   public function __construct() {
@@ -56,15 +67,17 @@ class route
 
   /**
    * 
-   * access the part after the base url, 
+   * Accesses the part after the base url, 
    * then removes the whitespaces and special characters 
-   * after that stores the contents in an array
+   * after that stores the contents in an array.
+   * 
+   * @return array
    * 
    */
   
   public function parse() {
-    return explode('/',filter_var(trim($_SERVER['REQUEST_URI'],'/'),FILTER_SANITIZE_URL));
-  }
-    
+    return explode('/', filter_var(trim($_SERVER['REQUEST_URI'], '/'), FILTER_SANITIZE_URL));
+  }   
 }
+
 ?>
