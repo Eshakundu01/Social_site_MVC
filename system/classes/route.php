@@ -25,6 +25,8 @@ class route
   /**
    * 
    * constructor
+   * This separates the controller name, method name and parameters and stores
+   * in the variables, after that the callback function is used.
    * 
    */
 
