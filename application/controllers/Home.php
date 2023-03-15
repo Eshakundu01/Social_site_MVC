@@ -6,8 +6,7 @@
  * 
  */
 
-class home
-{
+class Home {
   /**
    * 
    * It checks if login page is present in the views
@@ -36,5 +35,3 @@ class home
     }
   }
 }
-
-?>

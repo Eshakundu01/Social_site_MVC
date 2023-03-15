@@ -6,8 +6,7 @@
  * 
  */
 
-class route 
-{
+class Route {
   /**
    * 
    * @var string
@@ -15,7 +14,7 @@ class route
    * 
    */
 
-  protected $controller = "home";
+  protected $controller = "Home";
 
   /**
    * @var string 
@@ -76,8 +75,6 @@ class route
    */
   
   public function parse() {
-    return explode('/', filter_var(trim($_SERVER['REQUEST_URI'], '/'), FILTER_SANITIZE_URL));
+    return explode('/', ucfirst(filter_var(trim($_SERVER['REQUEST_URI'], '/'), FILTER_SANITIZE_URL)));
   }   
 }
-
-?>
