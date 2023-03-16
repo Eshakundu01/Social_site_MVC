@@ -21,34 +21,79 @@
         <div><img src="/assets/images/icon.png" class="icon" alt="logo"></div>
         <h2 class="heading">JOIN US!</h2>
         <p>Fill in the details below to connect with us...</p>
-        <form action="" method="POST">
-          <div class="input">FULL NAME: <input type="text" name="name" id="name" class="entries" placeholder="Enter your fullname" required></div>
-          <span id="name-error" class="error"></span>
-
-          <div class="input">EMAIL ID: <input type="text" name="mail" id="mail" class="entries" placeholder="Enter your email address" required></div>
-          <span id="mail-error" class="error"></span>
+        <form action="/register/signup" method="POST">
+          <div class="input">
+            FULL NAME: 
+            <input type="text" name="name" id="name" class="entries" placeholder="Enter your fullname" required 
+            <?php 
+            if (isset($_POST['name'])) {
+              echo "value=\"" . $_POST['name'] . "\""; 
+            } ?>>
+          </div>
+          <span id="name-error" class="error">
+            <?php (CheckInput::checkName()) ? CheckInput::checkName() : "" ; ?>
+          </span>
 
           <div class="input">
-            DATE OF BIRTH: <input type="date" name="dob" class="entries" required>
+            EMAIL ID: 
+            <input type="text" name="mail" id="mail" class="entries" placeholder="Enter your email address" required 
+              <?php 
+              if (isset($_POST['mail'])) {
+                echo "value=\"" . $_POST['mail'] . "\""; 
+              } 
+            ?>>
           </div>
+          <span id="mail-error" class="error">
+            <?php (CheckInput::checkMail()) ? CheckInput::checkMail() : "" ; ?>
+          </span>
+
+          <div class="input">
+            DATE OF BIRTH: 
+            <input type="date" name="dob" id="dob" class="entries" required
+            <?php if (isset($_POST['dob'])) {
+              echo "value=\"" . $_POST['dob'] . "\"";
+            } 
+            ?>>
+          </div>
+          <span class="error">
+            <?php (CheckInput::checkBirthDay()) ? CheckInput::checkBirthDay() : "" ; ?>
+          </span>
 
           <div class="input">
             SELECT YOUR GENDER:
             <ul class="gender">
-              <li><input type="radio" name="gender" class="select" value="MALE">Male</li>
-              <li><input type="radio" name="gender" class="select" value="FEMALE">Female</li>
-              <li><input type="radio" name="gender" class="select" value="OTHERS">Others</li>
+              <li>
+                <input type="radio" name="gender" class="select" value="male" 
+                <?php if (isset($_POST['gender']) && $_POST['gender']=="male") 
+                  echo "checked";?>>
+                Male
+              </li>
+              <li>
+                <input type="radio" name="gender" class="select" value="female"
+                <?php if (isset($_POST['gender']) && $_POST['gender']=="female") 
+                echo "checked";?>>
+                Female
+              </li>
+              <li>
+                <input type="radio" name="gender" class="select" value="others"
+                <?php if (isset($_POST['gender']) && $_POST['gender']=="others") 
+                echo "checked";?>>
+                Others
+              </li>
             </ul>
           </div>
 
           <div class="input">
-            PASSWORD: <input type="password" class="entries" name="code" id="code" placeholder="Enter password" required>
+            PASSWORD: 
+            <input type="password" class="entries" name="code" id="code" placeholder="Enter password" required>
             <i id="show" class="fa fa-eye"></i>
           </div>
-          <span id="password-error" class="error"></span>
+          <span id="password-error" class="error">
+          <?php (CheckInput::checkPass()) ? CheckInput::checkPass() : "" ; ?>
+          </span>
 
-          <div>
-            <input type="submit" name="register" class="btn" value="REGISTER">
+          <div class="button">
+            <button type="submit" name="register" id="register" class="btn">REGISTER</button>
             <a href="/home/index" class="btn back">GO BACK</a>
           </div>
         </form>

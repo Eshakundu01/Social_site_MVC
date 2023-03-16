@@ -116,3 +116,11 @@ body{
 .back {
   text-decoration: none;
 }
+
+.button {
+  padding: 10px 0;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+}

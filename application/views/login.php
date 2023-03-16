@@ -22,19 +22,21 @@
         <h2 class="heading">WELCOME</h2>
         <p>Enter your emailid and password to connect with others...</p>
         <form action="" method="POST">
-          <div class="input">EMAILID: <input type="text" name="user" class="entries" placeholder="Enter email address"></div>
-          <span class="error"></span>
+          <div class="input">
+            EMAILID: <input type="text" name="mail" id="mail" class="entries" placeholder="Enter email address">
+          </div>
+          <span id="mail-error" class="error"></span>
 
           <div class="input">
             PASSWORD: <input type="password" id="code" name="code" class="entries" placeholder="Enter password">
             <i id="show" class="fa fa-eye"></i>
           </div>
-          <span class="error"></span>
+          <span id="password-error" class="error"></span>
           <div class="connect forgot"><a href="#" class="link">Forgot Password?</a></div>
 
           <div><input type="submit" name="login" class="btn" value="LOGIN"></div>
           <div class="connect">Don't have a account yet?
-            <a href="/home/register" class="link">Register Now</a>
+            <a href="/register/signup" class="link">Register Now</a>
           </div>
         </form>
       </div>
