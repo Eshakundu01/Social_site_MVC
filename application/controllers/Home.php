@@ -6,7 +6,7 @@
  * 
  */
 
-class Home {
+class Home extends FrameWork {
   /**
    * 
    * It checks if login page is present in the views
@@ -16,9 +16,7 @@ class Home {
    */
 
   public function index() {
-    if (file_exists('application/views/login.php')) {
-      require_once 'application/views/login.php';
-    }
+    $this->view('login');
   }
 
 }

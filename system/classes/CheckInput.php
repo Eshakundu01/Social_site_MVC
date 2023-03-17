@@ -7,9 +7,9 @@ class CheckInput {
 
       // Validate full name
       if (empty($_POST['name'])) {
-        echo "Name field cannot be empty";
+        return "Name field cannot be empty, please fill in and try again";
       } elseif (!preg_match("/^[a-zA-Z-' ]+$/", $_POST['name'])) {
-        echo "Only alphabets and whitespace are allowed";
+        return "Only alphabets and whitespace are allowed, correct it, then register with us!";
       } else {
         return false;
       }
@@ -21,12 +21,12 @@ class CheckInput {
 
       // Validate email address
       if (empty($_POST['mail'])) {
-        echo "Email field cannot be empty";
+        return "Email field cannot be empty, please fill in and try again";
       } elseif (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email format is used";
+        return "Invalid email format is used please correct it, then register with us!";
       } else {
         if (Mail::verifyMail($_POST['mail'])) {
-          echo "Not a vaild email address";
+          return "Not a vaild email address provided. Provide a valid email and register with us!";
         } else {
           return false;
         }
@@ -39,12 +39,13 @@ class CheckInput {
 
       // Validate the date provided by the user
       if (empty($_POST['dob'])) {
-        echo "Date of birth field cannot be empty";
+        return "Date of birth field cannot be empty, please fill in and try again";
       } else {
         $date = explode('-', $_POST['dob']);
 
         $year = (int)$date[0];
         $currentyear = (int)date('Y');
+        $valid_year = $currentyear - 12;
 
         $month = (int)$date[1];
         $currentmonth = (int)date('m');
@@ -52,8 +53,14 @@ class CheckInput {
         $date = (int)$date[2];
         $currentdate = (int)date('d');
 
-        if ($_POST['dob'] == date('Y-m-d') || $year > $currentyear || $month > $currentmonth || $date > $currentdate) {
-          echo "Date of birth cannot be present or future date";
+        if ($_POST['dob'] == date('Y-m-d')) {
+          return "Date of birth cannot be today's date, enter your date of birth and register with us!";
+        } elseif (($year == $currentyear && $month < $currentmonth) || ($year == $currentyear && $month == $currentmonth) || ($year == $currentyear && $month > $currentmonth)) {
+          return "Date of birth cannot be in present year, enter your date of birth and register with us!";
+        } elseif ($year == $currentyear && $month == $currentmonth && $date > $currentdate) {
+          return "Date of birth cannot be future date, enter your date of birth and register with us!";
+        } elseif ($year > $valid_year) {
+          return "Too young to register with us!You must be atleast 12 years old";
         } else {
           return false;
         }
@@ -66,7 +73,7 @@ class CheckInput {
 
       // Validate password provided by the user
       if (empty($_POST['code'])) {
-        echo "Password field cannot be empty";
+        return "Password field cannot be empty, please fill in and try again";
       } else {
         $uppercase = preg_match('@[A-Z]@', $_POST['code']);
         $lowercase = preg_match('@[a-z]@', $_POST['code']);
@@ -74,7 +81,9 @@ class CheckInput {
         $specialChars = preg_match('@[^\w]@', $_POST['code']);
     
         if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($_POST['code']) < 8) {
-          echo 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+          return 'Password should be at least 8 characters in length and should include at least 
+          one upper case letter, one number, and one special character, please provide a strong 
+          password and register with us';
         } else {
           return false;
         }

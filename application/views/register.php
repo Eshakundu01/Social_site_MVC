@@ -22,6 +22,8 @@
         <h2 class="heading">JOIN US!</h2>
         <p>Fill in the details below to connect with us...</p>
         <form action="/register/signup" method="POST">
+          <span class="error"><?php if (Register::errorCheck()) 
+          { echo Register::errorCheck(); }?></span>
           <div class="input">
             FULL NAME: 
             <input type="text" name="name" id="name" class="entries" placeholder="Enter your fullname" required 
@@ -30,9 +32,7 @@
               echo "value=\"" . $_POST['name'] . "\""; 
             } ?>>
           </div>
-          <span id="name-error" class="error">
-            <?php (CheckInput::checkName()) ? CheckInput::checkName() : "" ; ?>
-          </span>
+          <span id="name-error" class="error"></span>
 
           <div class="input">
             EMAIL ID: 
@@ -43,9 +43,7 @@
               } 
             ?>>
           </div>
-          <span id="mail-error" class="error">
-            <?php (CheckInput::checkMail()) ? CheckInput::checkMail() : "" ; ?>
-          </span>
+          <span id="mail-error" class="error"></span>
 
           <div class="input">
             DATE OF BIRTH: 
@@ -55,9 +53,6 @@
             } 
             ?>>
           </div>
-          <span class="error">
-            <?php (CheckInput::checkBirthDay()) ? CheckInput::checkBirthDay() : "" ; ?>
-          </span>
 
           <div class="input">
             SELECT YOUR GENDER:
@@ -88,12 +83,10 @@
             <input type="password" class="entries" name="code" id="code" placeholder="Enter password" required>
             <i id="show" class="fa fa-eye"></i>
           </div>
-          <span id="password-error" class="error">
-          <?php (CheckInput::checkPass()) ? CheckInput::checkPass() : "" ; ?>
-          </span>
+          <span id="password-error" class="error"></span>
 
           <div class="button">
-            <button type="submit" name="register" id="register" class="btn">REGISTER</button>
+            <button type="submit" name="register" id="register" value="done" class="btn">REGISTER</button>
             <a href="/home/index" class="btn back">GO BACK</a>
           </div>
         </form>
