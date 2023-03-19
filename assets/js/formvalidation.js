@@ -55,7 +55,7 @@ $(function () {
     return $.trim(email).match(pattern) ? true : false;
   }
 
-  $("#code").on('change', function(){
+  $("#code").keyup(function(){
     var number = /([0-9])/;
     var alphabets = /([a-zA-Z])/;
     var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;

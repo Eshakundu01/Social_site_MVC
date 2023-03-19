@@ -2,6 +2,10 @@
 
 class Register extends FrameWork {
 
+  public function index() {
+
+  }
+
   /**
    * 
    * It checks if error is present in the page or not and accordingly  
@@ -14,23 +18,30 @@ class Register extends FrameWork {
     $this->view('register');
     if (isset($_POST['register'])) {
       if (!(Register::errorCheck())) {
-        if (Mail::registrationMail($_POST['mail'])) {
-          if ($this->model('database')) {
-            $table = new Database();
-            $password = Password::encrypt($_POST['code']);
-            try {
-              $result = $table->insertUserInfo($_POST['name'], $_POST['mail'], $_POST['dob'], $_POST['gender'], $password);
-              if ($result) {
-                $this->redirect('login');
-              }
-            } catch (Exception $e) {
-              $this->error('error');
-            }
+        if ($this->model('database')) {
+          $table = new Database();
+          $password = Password::encrypt($_POST['code']);
+
+          if (!(isset($_POST['geneder']))) {
+            $gender = "";
           } else {
-            $this->error('error');
+            $gender = $_POST['gender'];
+          }
+
+          try {
+            $result = $table->insertUserInfo($_POST['name'], $_POST['mail'], $_POST['dob'], $gender, $password);
+            if ($result) {
+              if (Mail::registrationMail($_POST['mail'])) {
+                $this->redirect('home/index');
+              } else {
+                $this->redirect('home/page');
+              }
+            }
+          } catch (Exception $e) {
+            $this->redirect('home/registered');
           }
         } else {
-          $this->error('error');
+          $this->redirect('home/page');
         }
       }
     }

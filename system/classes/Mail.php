@@ -40,13 +40,14 @@ class Mail {
     $mail->SMTPSecure = "tls";  
     $mail->Port = 587;  
 
-    $mail->From = "esha.kundu@innoraft.com";
+    $mail->setFrom("esha.kundu@innoraft.com", 'Lunamates');
 
     $mail->addAddress($emailId);
     $mail->isHTML(true);
+    $mail->AddEmbeddedImage('assets/images/welcome.jpg', 'welcome');
 
     $mail->Subject = "Register successfully";
-    $mail->Body = "Thank you for connecting with us!";
+    $mail->Body = file_get_contents('application/views/confirmationmail.html');
 
     try {
       $mail->send();

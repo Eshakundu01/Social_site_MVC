@@ -22,7 +22,7 @@ class Database {
     }
   }
 
-  public function fetchEmail() {
+  public function verifyEmail($email) {
     $sql = "select email from user";
     $result = $this->connection->query($sql);
 
@@ -31,13 +31,16 @@ class Database {
       while($row = $result->fetch_assoc()) {
         $mailid[] = $row['email'];
       }
-      return $mailid;
-    } else {
+    }
+
+    if (in_array($email, $mailid)) {
       return false;
+    } else {
+      return true;
     }
   }
 
-  public function fetchPassword() {
+  public function verifyPassword($key) {
     $sql = "select passcode from user";
     $result = $this->connection->query($sql);
 
@@ -46,9 +49,13 @@ class Database {
       while($row = $result->fetch_assoc()) {
         $code[] = $row['passcode'];
       }
-      return $code;
-    } else {
+    }
+
+    if (in_array($key, $code)) {
       return false;
+    } else {
+      return true;
     }
   }
+
 }

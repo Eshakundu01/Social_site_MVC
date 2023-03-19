@@ -19,4 +19,21 @@ class Home extends FrameWork {
     $this->view('login');
   }
 
+  public function forgot() {
+    $this->view('forgot');
+  }
+
+  public function registered() {
+    $this->error('registered');
+  }
+
+  public function page() {
+    $this->error('error');
+  }
+
+  public function login() {
+    if (isset($_POST['login'])) {
+      $this->view('home');
+    }
+  }
 }
