@@ -29,7 +29,7 @@
           <span id="key-error" class="error"></span>
 
           <div class="input">
-            CONFIRM PASSWORD: <input type="password" name="pass" id="pass" class="entries" placeholder="Enter your new password">
+            CONFIRM PASSWORD: <input type="password" name="pass" id="pass" class="entries key" placeholder="Re-enter your new password">
             <i id="show" class="fa fa-eye"></i>
           </div>
           <span id="key-error" class="error"></span>

@@ -22,7 +22,7 @@ class Database {
     }
   }
 
-  public function verifyEmail($email) {
+  public function emailExist($email) {
     $sql = "select email from user";
     $result = $this->connection->query($sql);
 
@@ -40,7 +40,7 @@ class Database {
     }
   }
 
-  public function verifyPassword($key) {
+  public function passwordExist($key) {
     $sql = "select passcode from user";
     $result = $this->connection->query($sql);
 
@@ -57,5 +57,4 @@ class Database {
       return true;
     }
   }
-
 }

@@ -23,8 +23,6 @@
         <p>Fill in the details below to connect with us...</p>
 
         <form action="/register/signup" method="POST">
-          <span class="error"><?php if (Register::errorCheck()) 
-          { echo Register::errorCheck(); }?></span>
           <div class="input">
             FULL NAME: 
             <input type="text" name="name" id="name" class="entries" placeholder="Enter your fullname" required 
@@ -33,7 +31,8 @@
               echo "value=\"" . $_POST['name'] . "\""; 
             } ?>>
           </div>
-          <span id="name-error" class="error"></span>
+          <span id="name-error" class="error"><?php if (Register::checkName()) 
+          { echo Register::checkName(); }?></span>
 
           <div class="input">
             EMAIL ID: 
@@ -44,7 +43,8 @@
               } 
             ?>>
           </div>
-          <span id="mail-error" class="error"></span>
+          <span id="mail-error" class="error"><?php if (Register::checkMail()) 
+          { echo Register::checkMail(); }?></span>
 
           <div class="input">
             DATE OF BIRTH: 
@@ -54,6 +54,8 @@
             } 
             ?>>
           </div>
+          <span class="error"><?php if (Register::checkBirthDay()) 
+          { echo Register::checkBirthDay(); }?></span>
 
           <div class="input">
             SELECT YOUR GENDER:
@@ -84,7 +86,8 @@
             <input type="password" class="entries" name="code" id="code" placeholder="Enter password" required>
             <i id="show" class="fa fa-eye"></i>
           </div>
-          <span id="password-error" class="error"></span>
+          <span id="password-error" class="error"><?php if (Register::checkPass()) 
+          { echo Register::checkPass(); }?></span>
 
           <div class="button">
             <button type="submit" name="register" id="register" value="done" class="btn">REGISTER</button>

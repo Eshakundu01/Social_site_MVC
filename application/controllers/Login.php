@@ -6,7 +6,7 @@ class Login extends FrameWork {
     if (isset($_POST['mailid'])) {
       if ($this->model('Database')){
         $connect = new Database();
-        if ($connect->verifyEmail($_POST['mailid'])) {
+        if ($connect->emailExist($_POST['mailid'])) {
           echo "You haven't registered yet, please register and try again";
         } else {
           echo "";
@@ -18,7 +18,7 @@ class Login extends FrameWork {
       if ($this->model('Database')){
         $connect = new Database();
         $pass = Password::encrypt($_POST['code']);
-        if ($connect->verifyPassword($pass)) {
+        if ($connect->passwordExist($pass)) {
           echo "You've entered incorrect password. Forgotten password?";
         } else {
           echo "";

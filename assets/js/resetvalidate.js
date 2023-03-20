@@ -7,22 +7,28 @@ $(function () {
 
         url:'/reset/authenticate',
         method:'POST',
-        data:{mailid:input},
+        data:{mail:input},
 
         success:function(data) {
           if (data) {
             $('#mail-error').html(data);
             $('#mail-error').css("display", "block");
-            $('#reset').prop("disabled", true);
+            $('#submit').prop("disabled", true);
           } else {
             $('#mail-error').html(data);
             $('#mail-error').css("display", "block");
-            $('#reset').prop("disabled", false);
+            $('#submit').prop("disabled", false);
           }
         }
       });
     } else {
       $('#mail-error').css("display", "none");
     }
+  });
+
+  $('#submit').on('click',function(e){
+    e.preventDefault();
+    $('#otpbox').modal('toggle');
+
   });
 });

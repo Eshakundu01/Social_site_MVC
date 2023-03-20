@@ -56,4 +56,34 @@ class Mail {
       return false;
     }
   }
+
+  public function otpSend($pin):bool {
+    require 'credentials.php';
+    $mail = new PHPMailer(true);  
+    // Set up PHPMailer to use SMTP
+    $mail->isSMTP();
+    $mail->Host = "smtp.gmail.com";
+    $mail->SMTPAuth = true;
+    $mail->Username = $mailadd;
+    // Password to use for SMTP authentication 
+    $mail->Password = $pass;
+    $mail->SMTPSecure = "tls";  
+    $mail->Port = 587;  
+
+    $mail->From = "esha.kundu@innoraft.com";
+
+    $mail->addAddress($this->mail);
+
+    $mail->isHTML(true);
+
+    $mail->Subject = "OTP GENERATED TO RESET PASSWORD";
+    $mail->Body = 'Enter the below generated otp in the page to reset your password.<br><b>OTP : <b>' . $pin . 'Do not share this code with anyone';
+
+    try {
+      $mail->send();
+      return true;
+    } catch (Exception $e) {
+      return false;
+    }
+  }
 }
