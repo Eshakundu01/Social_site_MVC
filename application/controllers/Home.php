@@ -34,6 +34,8 @@ class Home extends FrameWork {
   public function login() {
     if (isset($_POST['login'])) {
       $this->view('home');
+    } else {
+      $this->view('login');
     }
   }
 }

@@ -143,3 +143,19 @@ body{
   height:50px;
   text-align:center;
 }
+
+.innerbox{
+  position: relative;
+}
+
+.load {
+  display: none;
+  width: 90px;
+  position: absolute;
+  top: 50%;
+  left: 48%;
+}
+
+.loadbox {
+  margin: 0;
+}

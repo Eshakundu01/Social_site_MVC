@@ -22,24 +22,29 @@
 <body>
   <div class="bg">
     <div class="container box">
-      <div class="content">
+      <div class="content innerbox">
         <div><img src="/assets/images/icon.png" class="icon" alt="logo"></div>
         <h2 class="heading">Forgot Password</h2>
         <p>Enter your registered email address to receive an OTP</p>
-        <form action="/reset/action" method="POST">
+        <form>
           <div>
             <span class="input">EMAILID:</span>
-            <input type="text" name="mail" id="mail" class="entries place" placeholder="Enter email address" required>
+            <input type="text" name="mail" id="mail" class="entries place" placeholder="Enter email address" required
+            <?php 
+              if (isset($_POST['mail'])) {
+                echo "value=\"" . $_POST['mail'] . "\""; 
+              } 
+            ?>>
           </div>
           <span id="mail-error" class="error"></span>
 
           <div class="button">
-            <input type="submit" name="submit" id="submit" class="btn" value="SUBMIT">
+            <input type="button" name="submit" id="submit" class="btn" value="SUBMIT">
             <a href="/home/index" class="btn text-dark text-decoration-none">GO BACK</a>
           </div>
         </form>
 
-        <!-- Modal -->
+        <!-- OTP Modal -->
         <div class="modal fade" id="otpbox" tabindex="-1" role="dialog">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -49,22 +54,60 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+
               <div class="modal-body">
-                <form action="">
-                  <span id="otp-error" class="error"></span>
-                  <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(1)' maxlength=1 >
-                  <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(2)' maxlength=1 >
-                  <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(3)' maxlength=1 >
-                  <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(4)' maxlength=1 >
+                <form action="/reset/action" method="POST">
+                  <div id="otp-error" class="error"></div>
+                  <input class="otp" type="text" id="pin1" oninput='digitValidate(this)' onkeyup="clickEvent(this,'pin2')" maxlength=1 >
+                  <input class="otp" type="text" id="pin2" oninput='digitValidate(this)' onkeyup="clickEvent(this,'pin3')" maxlength=1 >
+                  <input class="otp" type="text" id="pin3" oninput='digitValidate(this)' onkeyup="clickEvent(this,'pin4')" maxlength=1 >
+                  <input class="otp" type="text" id="pin4" oninput='digitValidate(this)' maxlength=1 >
+                  <div class="mt-4 pt-2 border-secondary border-top">
+                    <input type="button" name="resend" id="resend" value="RESEND" class="btn" data-dismiss="modal">
+                    <input type="button" name="verified" id="verified" value="VERIFY" class="btn">
+                  </div>
                 </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">RESEND</button>
-                <button type="button" name="verified" value="true" class="btn btn-primary">VERIFY</button>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Reset Password Modal -->
+        <div class="modal fade" id="resetbox" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title text-center heading">Reset Your Password</h2> 
+              </div>
+              <div class="modal-body">
+                <p>Enter your new password below...</p>
+                <form action="/reset/action" method="POST">
+                  <div>
+                    <span class="input">NEW PASSWORD:</span>
+                    <input type="password" name="key" id="key" class="entries pass" placeholder="Enter your new password">
+                    <i class="fa fa-eye view"></i>
+                  </div>
+                  <div id="pass-error" class="error"></div>
+
+                  <div>
+                    <span class="input">CONFIRM PASSWORD:</span>
+                    <input type="password" name="pass" id="pass" class="entries key pass" placeholder="Re-enter your new password">
+                    <i class="fa fa-eye view"></i>
+                  </div>
+                  <div id="key-error" class="error"></div>
+                  
+                  <div class="mt-4 pt-2 border-secondary border-top">
+                    <input type="button" name="reset" id="reset" value="RESET" class="btn" data-dismiss="modal">
+                    <a href="/home/index" class="btn text-dark text-decoration-none">GO BACK</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="loadbox">
+        <img src="/assets/images/loader.gif" id="loading" alt="loader" class="load">
       </div>
     </div>
   </div>

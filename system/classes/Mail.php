@@ -57,27 +57,26 @@ class Mail {
     }
   }
 
-  public function otpSend($pin):bool {
-    require 'credentials.php';
+  public static function otpSend($pin, $email) {
     $mail = new PHPMailer(true);  
     // Set up PHPMailer to use SMTP
     $mail->isSMTP();
     $mail->Host = "smtp.gmail.com";
     $mail->SMTPAuth = true;
-    $mail->Username = $mailadd;
+    $mail->Username = MAILID;
     // Password to use for SMTP authentication 
-    $mail->Password = $pass;
+    $mail->Password = PASSWORD;
     $mail->SMTPSecure = "tls";  
     $mail->Port = 587;  
+    
+    $mail->setFrom("esha.kundu@innoraft.com", 'Lunamates');
 
-    $mail->From = "esha.kundu@innoraft.com";
-
-    $mail->addAddress($this->mail);
+    $mail->addAddress($email);
 
     $mail->isHTML(true);
 
     $mail->Subject = "OTP GENERATED TO RESET PASSWORD";
-    $mail->Body = 'Enter the below generated otp in the page to reset your password.<br><b>OTP : <b>' . $pin . 'Do not share this code with anyone';
+    $mail->Body = 'Enter the below generated otp in the page to reset your password.<br><b>OTP : <b>' . $pin . '<br>Do not share this code with anyone';
 
     try {
       $mail->send();
