@@ -62,9 +62,11 @@ $(function () {
           if (data) {
             $('#otp-error').html(data);
             $('#resend').prop('disabled', false);
+            $('#verified').prop("disabled", true);
           } else {
             $('#otp-error').html(data);
             $('#resend').prop("disabled", true);
+            $('#verified').prop("disabled", false);
           }
         }
       });
@@ -83,7 +85,7 @@ $(function () {
   });
 
   $('#resend').on('click', function() {
-    $('#otpbox').modal('show');
+    $('#otp-error').text('');
     var input = $('#mail').val();
     if (input != "") {
       $.ajax ({
@@ -93,11 +95,13 @@ $(function () {
         success:function(data) {
           if (data) {
             $('#resend').prop("disabled", true);
+            $('#verified').prop("disabled", false);
           }
         }
       });
     }
   });
+
 });
 
 let digitValidate = function(ele){

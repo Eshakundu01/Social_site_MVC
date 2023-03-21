@@ -2,10 +2,6 @@
 
 class Register extends FrameWork {
 
-  public function index() {
-
-  }
-
   /**
    * 
    * It checks if error is present in the page or not and accordingly  
@@ -18,8 +14,8 @@ class Register extends FrameWork {
     $this->view('register');
     if (isset($_POST['register'])) {
       if (!(Register::checkName() || Register::checkMail() || Register::checkBirthDay() || Register::checkPass())) {
-        if ($this->model('database')) {
-          $table = new Database();
+        if ($this->model('userDatabase')) {
+          $table = new UserDatabase();
           $password = Password::encrypt($_POST['code']);
 
           if (!(isset($_POST['geneder']))) {

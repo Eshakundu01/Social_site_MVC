@@ -63,8 +63,8 @@
                   <input class="otp" type="text" id="pin3" oninput='digitValidate(this)' onkeyup="clickEvent(this,'pin4')" maxlength=1 >
                   <input class="otp" type="text" id="pin4" oninput='digitValidate(this)' maxlength=1 >
                   <div class="mt-4 pt-2 border-secondary border-top">
-                    <input type="button" name="resend" id="resend" value="RESEND" class="btn" data-dismiss="modal">
-                    <input type="button" name="verified" id="verified" value="VERIFY" class="btn">
+                    <input type="button" name="resend" id="resend" value="RESEND" class="btn" onclick="this.form.reset();">
+                    <input type="button" name="verified" id="verified" value="VERIFY" class="btn" data-dismiss="modal">
                   </div>
                 </form>
               </div>
@@ -81,7 +81,7 @@
               </div>
               <div class="modal-body">
                 <p>Enter your new password below...</p>
-                <form action="/reset/action" method="POST">
+                <form method="POST">
                   <div>
                     <span class="input">NEW PASSWORD:</span>
                     <input type="password" name="key" id="key" class="entries pass" placeholder="Enter your new password">
@@ -97,7 +97,7 @@
                   <div id="key-error" class="error"></div>
                   
                   <div class="mt-4 pt-2 border-secondary border-top">
-                    <input type="button" name="reset" id="reset" value="RESET" class="btn" data-dismiss="modal">
+                    <input type="button" name="reset" id="reset" value="RESET" class="btn">
                     <a href="/home/index" class="btn text-dark text-decoration-none">GO BACK</a>
                   </div>
                 </form>
