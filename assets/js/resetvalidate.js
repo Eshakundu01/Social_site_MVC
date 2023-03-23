@@ -74,14 +74,21 @@ $(function () {
   });
 
 
-  $(".view").click(function () {
+  $("#view").click(function () {
     $(this).toggleClass("fa-eye fa-eye-slash");
     var type = $(this).hasClass("fa-eye-slash") ? "text" : "password";
-    $(".pass").attr("type", type);
+    $("#key").attr("type", type);
+  });
+
+  $("#display").click(function () {
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    var type = $(this).hasClass("fa-eye-slash") ? "text" : "password";
+    $("#pass").attr("type", type);
   });
 
   $('#verified').on('click', function() {
     $('#resetbox').modal('show');
+    $('#reset').prop("disabled", true);
   });
 
   $('#resend').on('click', function() {
@@ -96,6 +103,51 @@ $(function () {
           if (data) {
             $('#resend').prop("disabled", true);
             $('#verified').prop("disabled", false);
+          }
+        }
+      });
+    }
+  });
+
+  $("#key").keyup(function(){
+    var number = /([0-9])/;
+    var alphabets = /([a-zA-Z])/;
+    var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+    if ($(this).val().length < 8) {
+      $('#pass-error').html("Weak password should be atleast 8 characters");
+      $('#reset').prop("disabled",true);
+    } else {
+      if ($(this).val().match(number) && $(this).val().match(alphabets) && $(this).val().match(special_characters)) {
+        $('#pass-error').html("");
+      } else {
+        $('#pass-error').html("Password must include alphabets, numbers and special characters or some combination");
+        $('#reset').prop("disabled",true);
+      }
+    }
+  });
+
+  $("#pass").keyup(function(){
+    var newpass = $('#key').val();
+    if ($(this).val() != newpass) {
+      $('#key-error').html("Please re-enter the same password");
+      $('#reset').prop("disabled",true);
+    } else {
+      $('#key-error').html("");
+      $('#reset').prop("disabled",false);
+    }
+  });
+
+  $('#reset').on('click', function() {
+    var input = $('#pass').val();
+    if (input != "") {
+      $.ajax ({
+        url:'/reset/change',
+        method:'POST',
+        data:{email:$('#mail').val(), password:input},
+        success:function(data) {
+          if (data) {
+            alert("Your password has been reset, use your new password to login");
+            window.location = '/home/index';
           }
         }
       });

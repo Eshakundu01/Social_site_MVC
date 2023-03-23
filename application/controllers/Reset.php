@@ -47,4 +47,15 @@ class Reset extends FrameWork {
     }
   }
 
+  public function change() {
+    if ($this->model('UserDatabase')) {
+      $connect = new UserDatabase();
+      $pass = Password::encrypt($_POST['password']);
+      if ($connect->updatePassword($pass, $_POST['email'])) {
+        echo "sucess";
+      } else {
+        echo "";
+      }
+    }
+  }
 }

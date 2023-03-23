@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Moon+Dance&display=swap" rel="stylesheet">
+  <!-- Font awesome icon -->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Stylesheet -->
@@ -81,23 +83,23 @@
               </div>
               <div class="modal-body">
                 <p>Enter your new password below...</p>
-                <form method="POST">
-                  <div>
+                <form>
+                  <div class="input-box">
                     <span class="input">NEW PASSWORD:</span>
-                    <input type="password" name="key" id="key" class="entries pass" placeholder="Enter your new password">
-                    <i class="fa fa-eye view"></i>
+                    <input type="password" name="key" id="key" class="entries" placeholder="Enter your new password" required>
+                    <i id="view" class="fa fa-eye"></i>
                   </div>
                   <div id="pass-error" class="error"></div>
 
-                  <div>
+                  <div class="input-box">
                     <span class="input">CONFIRM PASSWORD:</span>
-                    <input type="password" name="pass" id="pass" class="entries key pass" placeholder="Re-enter your new password">
-                    <i class="fa fa-eye view"></i>
+                    <input type="password" name="pass" id="pass" class="entries" placeholder="Re-enter your new password" required>
+                    <i id="display" class="fa fa-eye"></i>
                   </div>
                   <div id="key-error" class="error"></div>
                   
                   <div class="mt-4 pt-2 border-secondary border-top">
-                    <input type="button" name="reset" id="reset" value="RESET" class="btn">
+                    <input type="button" name="reset" id="reset" value="RESET" class="btn" data-dismiss="modal">
                     <a href="/home/index" class="btn text-dark text-decoration-none">GO BACK</a>
                   </div>
                 </form>

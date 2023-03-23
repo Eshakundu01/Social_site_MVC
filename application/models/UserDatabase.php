@@ -57,4 +57,14 @@ class UserDatabase {
       return true;
     }
   }
+
+  public function updatePassword($key, $mail) {
+    $sql = "update user set passcode='$key' where email in 
+    (select email from otp where email='$mail')";
+    if ($this->connection->query($sql)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -5,10 +5,8 @@ class FrameWork {
   public function view($fileName) {
     if (file_exists('application/views/' . $fileName . '.php')) {
       require_once 'application/views/' . $fileName . '.php';
-      return true;
     } else {
       $this->error('error');
-      return false;
     }
   }
   
