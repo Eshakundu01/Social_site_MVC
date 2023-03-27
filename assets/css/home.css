@@ -1,4 +1,269 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700|Source+Sans+Pro:300,400,600,700&display=swap");
+
 *{
   box-sizing: border-box;
 }
 
+.navbar, .dropdown-menu {
+  box-shadow: 0 10px 35px #111;
+  background-color: #c1a3d5;
+}
+
+.navbar a {
+  color: #3d065a!important;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+}
+
+nav .navbar-nav li a{
+  color: #3d065a!important;
+}
+
+.dropdown {
+  cursor: pointer;
+}
+
+.main-container {
+  padding: 20px;
+  background-image: url(/assets/images/bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.greetbox {
+  background-color: #c1a3d5;
+  overflow: hidden;
+  height: fit-content;
+}
+
+.greet {
+  width: 250px;
+  mix-blend-mode: multiply;
+}
+
+.content {
+  color: #8f2ec4;
+}
+
+
+.box {
+  background-color: #c1a3d5;
+  border-radius: 4px;
+}
+
+.status-menu {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.status-menu-item {
+  text-decoration: none;
+  color: #3d065a;
+  padding: 10px 14px;
+  line-height: 0.7;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  border-radius: 20px;
+  font-size: 35px;
+}
+
+.status-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.status-main {
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #b98bd8;
+  padding-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.status-textarea {
+  flex-grow: 1;
+  background-color: transparent;
+  border: none;
+  resize: none;
+  margin-top: 15px;
+  color: #fff;
+  max-width: calc(100% - 70px);
+}
+
+.status-textarea::placeholder {
+  color: #5c5d71;
+}
+
+.status-textarea:focus {
+  outline: none;
+  border: none;
+}
+
+.uploadbtn {
+  display: none;
+}
+
+.status-action input {
+  width: 30px;
+  flex-shrink: 0;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.status-actions {
+  display: flex;
+  padding: 10px 20px;
+}
+
+.status-action {
+  text-decoration: none;
+  color: #8f2ec4;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.status-action:hover {
+  text-decoration: none;
+}
+
+.status-share {
+  background-color: #1b86f9;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin-left: auto;
+  box-shadow: 0 0 20px #1b86f9;
+  cursor: pointer;
+}
+
+.status-share:focus {
+  outline: none;
+  border: none;
+}
+
+.status-share:hover {
+  opacity: 0.6;
+}
+
+.album {
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.album-title {
+  color: #3d065a;
+}
+
+.album .status-main {
+  border: none;
+  display: flex;
+}
+
+.postdropdown-toggle {
+  margin-bottom: auto;
+  margin-top: 5px;
+  margin-left: auto;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.album-date {
+  font-size: 15px;
+  color: #8f2ec4;
+  margin-top: 4px;
+}
+
+.album-content {
+  padding: 0 20px 20px;
+}
+ 
+.album-photo {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+ 
+.album-photos {
+  display: flex;
+  margin-top: 20px;
+  max-height: 30vh;
+}
+ 
+.album-photos > .album-photo {
+  width: 50%;
+}
+ 
+.album-actions {
+  padding: 0 20px 20px;
+}
+ 
+.album-action {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #8f2ec4;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.album-action i {
+  font-size: 20px;
+  margin-right: 6px;
+  color: #8f2ec4; 
+}
+
+.album-action i:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.foot {
+  background-color: #c1a3d5;
+}
+
+.profile {
+  position: relative;
+  height: 40vh;
+  min-height: 250px;
+  max-height: 350px;
+}
+
+.profile-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #151728;
+}
+
+.profile-name {
+  margin-left: 24px;
+  margin-bottom: 24px;
+  font-size: 22px;
+  color: #fff;
+  font-weight: 600;
+  font-family: "DM Sans", sans-serif;
+}

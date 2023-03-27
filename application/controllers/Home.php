@@ -17,6 +17,16 @@ class Home extends FrameWork {
 
   public function index() {
     $this->view('login');
+
+    if (isset($_POST['login'])) {
+      if ($this->model('UserDatabase')) {
+        $connect = new UserDatabase();
+        if ($connect->getName($_POST['email'])) {
+          $_SESSION['user'] = $connect->getName($_POST['email']);
+          $this->redirect('home/dashboard');
+        }
+      }
+    }
   }
 
   public function forgot() {
@@ -31,12 +41,25 @@ class Home extends FrameWork {
     $this->error('error');
   }
 
-  public function login() {
-    if (isset($_POST['login'])) {
-      $this->view('home');
-    } else {
-      $this->view('login');
+  public function dashboard() {
+    $this->view('home');
+    if (!(isset($_SESSION['user']))) {
+      $this->redirect('home/index');
     }
   }
 
+  public function logout() {
+    session_start();
+    session_unset();
+    session_destroy();
+    $this->redirect('home/index'); 
+  }
+
+  public function profile() {
+    $this->view('profile');
+  }
+
+  public function delete() {
+    $this->view('delete');
+  }
 }

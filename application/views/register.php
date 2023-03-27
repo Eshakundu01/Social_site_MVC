@@ -24,7 +24,7 @@
 
         <form action="/register/signup" method="POST">
           <div class="input">
-            FULL NAME: 
+            FULL NAME: <span class="required">*</span>
             <input type="text" name="name" id="name" class="entries" placeholder="Enter your fullname" required 
             <?php 
             if (isset($_POST['name'])) {
@@ -35,7 +35,7 @@
           { echo Register::checkName(); }?></span>
 
           <div class="input">
-            EMAIL ID: 
+            EMAIL ID: <span class="required">*</span>
             <input type="text" name="mail" id="mail" class="entries" placeholder="Enter your email address" required 
               <?php 
               if (isset($_POST['mail'])) {
@@ -47,7 +47,7 @@
           { echo Register::checkMail(); }?></span>
 
           <div class="input">
-            DATE OF BIRTH: 
+            DATE OF BIRTH: <span class="required">*</span>
             <input type="date" name="dob" id="dob" class="entries" required
             <?php if (isset($_POST['dob'])) {
               echo "value=\"" . $_POST['dob'] . "\"";
@@ -82,7 +82,7 @@
           </div>
 
           <div class="input">
-            PASSWORD: 
+            PASSWORD: <span class="required">*</span>
             <input type="password" class="entries" name="code" id="code" placeholder="Enter password" required>
             <i id="show" class="fa fa-eye"></i>
           </div>

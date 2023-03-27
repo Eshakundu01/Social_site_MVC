@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +21,7 @@ session_start();
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/assets/css/home.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-  <script src="/assets/js/home.js"></script>
+  <script src="/assets/js/profile.js"></script>
 </head>
 <body>
   <!-- navbar -->
@@ -38,12 +36,12 @@ session_start();
 
     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="/home/dashboard">
             <i class="fa fa-home"></i>
             Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown active">
           <a class="nav-link dropdown-toggle list" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-gear"></i>
             Settings
@@ -66,73 +64,22 @@ session_start();
   <!-- Body content -->
   <div class="main-container">
     <div class="container">
-      <div class="row">
-        <!-- Welcome message -->
-        <div class="col-lg-3 col-md-6 col-sm mt-5 py-3 greetbox text-center">
-          <div><img src="/assets/images/hello.gif" alt="hello" class="greet"></div>
-          <div class="font-weight-bold status-menu-item">
-            <?php if (isset($_SESSION['user'])) {echo " " . $_SESSION['user'];}?>
-          </div>
-          <p class="content">Our website welcomes you, find your friends here. For any help send a mail to the given mail address
-            <a href="mailto:Lunamates<esha.kundu@innoraft.com>">esha.kundu@innoraft.com</a>
-          </p>
+      <div class="profile">
+        <div class="profile-avatar">
+          <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" alt="" class="profile-img">
+          <div class="profile-name">Quan Ha</div>
         </div>
-        <!-- Add post and view them -->
-        <div class="col-lg-9 col-md-6 col-sm mt-5">
-          <div class="timeline-right">
-            <div class="status box">
-              <div class="status-menu">
-                <h3 class="status-menu-item">Post Here</h3>
-              </div>
-              <form action="" method="POST" enctype="multipart/form-data">
-                <div class="status-main">
-                  <img src="" class="status-img">
-                  <textarea id="postarea" class="status-textarea" placeholder="Write what is on your mind..."></textarea>
-                </div>
-                <div class="status-actions">
-                  <a id="camera" class="status-action">
-                    <input type="image" id="camera" src="/assets/images/camera.png" alt="add-photo"/>
-                    <input type="file" id="upload" class="uploadbtn">
-                  </a>
-                  <a id="video" class="status-action">
-                    <input type="image" src="/assets/images/video.png" alt="add-video">
-                    <input type="file" id="video" class="uploadbtn">
-                  </a>
-                  <button class="status-share">Share</button>
-                </div>
-              </form>
-            </div>
-            <div class="album box mt-3">
-              <div class="status-main">
-                <img src="" class="status-img" />
-                <div class="album-detail">
-                  <div class="album-title"><strong></strong></div>
-                  <div class="album-date"></div>
-                </div>
-              </div>
-              <div class="album-content">
-                <div class="album-photos">
-                  <img src="" alt="" class="album-photo" />
-                </div>
-              </div>
-              <div class="album-actions">
-                <a id="like" class="album-action">
-                  <i class="fa fa-heart"></i>
-                </a>
-                <a id="comment" class="album-action">
-                  <i class="fa fa-comment"></i>
-                </a>
-                <a id="share" class="album-action">
-                  <i class="fa fa-share"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <img src="https://images.unsplash.com/photo-1508247967583-7d982ea01526?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" alt="" class="profile-cover">
       </div>
     </div>
   </div>
 
+  <!-- Footer -->
+  <footer class="foot">
+    <p class="content text-center p-3">For any help send a mail to the given mail address
+      <a href="mailto:Lunamates<esha.kundu@innoraft.com>">esha.kundu@innoraft.com</a>
+    </p>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

@@ -61,8 +61,24 @@ class UserDatabase {
   public function updatePassword($key, $mail) {
     $sql = "update user set passcode='$key' where email in 
     (select email from otp where email='$mail')";
+
     if ($this->connection->query($sql)) {
       return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function getName($mail) {
+    $sql = "select * from user where email='$mail'";
+
+    $result = $this->connection->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        return $row['name'];
+      }
     } else {
       return false;
     }

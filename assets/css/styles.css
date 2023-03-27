@@ -159,3 +159,10 @@ body{
 .input-box {
   color: #9c4782;
 }
+
+.required {
+  font-size: 15px;
+  color: rgb(168, 25, 25);
+  position: relative;
+  top: -10px;
+}

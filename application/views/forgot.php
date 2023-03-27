@@ -30,7 +30,7 @@
         <p>Enter your registered email address to receive an OTP</p>
         <form>
           <div>
-            <span class="input">EMAILID:</span>
+            <span class="input">EMAILID:<span class="required">*</span></span>
             <input type="text" name="mail" id="mail" class="entries place" placeholder="Enter email address" required
             <?php 
               if (isset($_POST['mail'])) {

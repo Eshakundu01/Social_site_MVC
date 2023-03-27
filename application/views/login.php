@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,13 +9,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lunamates</title>
+  <!-- Favicon icon -->
   <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Moon+Dance&display=swap" rel="stylesheet">
+  <!-- Jquery CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <!-- Font Awesome Link -->
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom style sheet -->
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <!-- Custom jquery -->
   <script src="/assets/js/loginvalidate.js"></script>
 </head>
 <body>
@@ -21,14 +31,16 @@
         <div><img src="/assets/images/icon.png" class="icon" alt="logo"></div>
         <h2 class="heading">WELCOME</h2>
         <p>Enter your emailid and password to connect with others...</p>
-        <form action="/home/login" method="POST">
+        <form action="/home/index" method="POST">
           <div class="input">
-            EMAILID: <input type="text" name="email" id="email" class="entries" placeholder="Enter email address" required>
+            EMAILID: <span class="required">*</span>
+            <input type="text" name="email" id="email" class="entries" placeholder="Enter email address" required>
           </div>
           <span id="email-error" class="error"></span>
 
           <div class="input">
-            PASSWORD: <input type="password" id="pass" name="pass" class="entries" placeholder="Enter password" required>
+            PASSWORD: <span class="required">*</span>
+            <input type="password" id="pass" name="pass" class="entries" placeholder="Enter password" required>
             <i id="show" class="fa fa-eye"></i>
           </div>
           <span id="pass-error" class="error"></span>
