@@ -66,10 +66,17 @@
     <div class="container">
       <div class="profile">
         <div class="profile-avatar">
-          <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" alt="" class="profile-img">
-          <div class="profile-name">Quan Ha</div>
+          <div class="avatar-edit">
+            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+          </div>
+          <div class="avatar-preview">
+            <div id="imagePreview" class="profile-img"></div>
+          </div>
+          <div class="profile-name">
+            <?php if (isset($_SESSION['user'])) {echo " " . $_SESSION['user'];}?>
+          </div>
         </div>
-        <img src="https://images.unsplash.com/photo-1508247967583-7d982ea01526?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" alt="" class="profile-cover">
+        <img src="" alt="coverpic" class="profile-cover">
       </div>
     </div>
   </div>

@@ -34,9 +34,9 @@ class UserDatabase {
     }
 
     if (in_array($email, $mailid)) {
-      return false;
-    } else {
       return true;
+    } else {
+      return false;
     }
   }
 
@@ -52,9 +52,9 @@ class UserDatabase {
     }
 
     if (in_array($key, $code)) {
-      return false;
-    } else {
       return true;
+    } else {
+      return false;
     }
   }
 

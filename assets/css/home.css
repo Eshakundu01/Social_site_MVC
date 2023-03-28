@@ -237,6 +237,7 @@ nav .navbar-nav li a{
   height: 40vh;
   min-height: 250px;
   max-height: 350px;
+  z-index: 1;
 }
 
 .profile-cover {
@@ -247,8 +248,16 @@ nav .navbar-nav li a{
   height: 100%;
   object-fit: cover;
   object-position: center;
-  z-index: -1;
   border-radius: 4px;
+}
+
+.profile-avatar {
+  position: absolute;
+  align-items: center;
+  display: flex;
+  z-index: 1;
+  bottom: 16px;
+  left: 24px;
 }
 
 .profile-img {
