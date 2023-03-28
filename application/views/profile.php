@@ -64,29 +64,60 @@
   <!-- Body content -->
   <div class="main-container">
     <div class="container">
-      <div class="profile">
-        <div class="profile-avatar">
-          <div class="avatar-edit">
-            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+      <form action="" method="POST">
+        <div class="profile">
+          <!-- Profile Picture -->
+          <div class="form-group profile-avatar">
+            <div class="avatar-edit">
+              <div class="avatar-preview">
+                <input type='file' id="imageUpload" name="imageUpload" class="uploadbtn" accept=".png, .jpg, .jpeg" />
+                <img src="/assets/images/defaultimage.png" id="imagePreview" class="profile-img"/>
+              </div>
+              <span id="edit" class="edit p-2"><i class="fa fa-pencil"></i></span>
+            </div>
+            <div class="profile-name">
+              <?php if (isset($_SESSION['user'])) {echo " " . $_SESSION['user'];}?>
+            </div>
           </div>
-          <div class="avatar-preview">
-            <div id="imagePreview" class="profile-img"></div>
-          </div>
-          <div class="profile-name">
-            <?php if (isset($_SESSION['user'])) {echo " " . $_SESSION['user'];}?>
+          <!-- Cover Picture -->
+          <div class="form-group">
+            <input type="file" id="cover" name="cover" class="uploadbtn" accept=".png, .jpg, .jpeg" />
+            <img src="/assets/images/cover.png" id="coverPreview" alt="coverpic" class="profile-cover">
+            <span id="add" class="addcover p-2"><i class="fa fa-plus"></i></span>
           </div>
         </div>
-        <img src="" alt="coverpic" class="profile-cover">
-      </div>
+        <!-- Personal details -->
+        <div class="bg-light mt-2 p-4 detailsbox">
+          <div class="header">
+            <span class="heading">PERSONAL DETAILS</span>
+            <button class="btn btn-primary mb-2 justify-content-end">EDIT</button>
+          </div>
+          <div class="form-group mt-2">
+            <label for="name">FULL NAME</label>
+            <input type="text" name="name" id="name" required 
+            <?php echo "value=\"" . $_SESSION['user'] . "\"";  ?>>
+          </div>
+          <div class="form-group mt-2">
+            <label for="name">EMAIL-ID</label>
+            <input type="text" name="email" id="email" required 
+            <?php echo "value=\"" . $_SESSION['mail'] . "\"";  ?>>
+          </div>
+          <div class="form-group mt-2">
+            <label for="name">DATE OF BIRTH</label>
+            <input type="date" name="birthday" id="birthday" required 
+            <?php echo "value=\"" . $_SESSION['birthday'] . "\"";  ?>>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="foot">
+  <!-- <footer class="foot">
     <p class="content text-center p-3">For any help send a mail to the given mail address
       <a href="mailto:Lunamates<esha.kundu@innoraft.com>">esha.kundu@innoraft.com</a>
     </p>
-  </footer>
+  </footer> -->
 
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

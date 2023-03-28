@@ -5,16 +5,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lunamates</title>
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#4e3464">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#4e3464">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#4e3464">
+  <!-- Favicon Icon -->
   <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Moon+Dance&display=swap" rel="stylesheet">
+  <!-- Jquery CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <!-- Font Awesome CDN -->
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- External CSS and Javascript files -->
   <link rel="stylesheet" href="/assets/css/styles.css">
   <script src="/assets/js/formvalidation.js"></script>
 </head>
 <body>
+  <!-- Registration Form -->
   <div class="bg">
     <div class="container">
       <div class="content">

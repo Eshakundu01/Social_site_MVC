@@ -21,8 +21,13 @@ class Home extends FrameWork {
     if (isset($_POST['login'])) {
       if ($this->model('UserDatabase')) {
         $connect = new UserDatabase();
-        if ($connect->getName($_POST['email'])) {
-          $_SESSION['user'] = $connect->getName($_POST['email']);
+        if ($connect->getAllData($_POST['email'])) {
+          $result = $connect->getAllData($_POST['email']);
+          $_SESSION['user'] = $result['name'];
+          $_SESSION['mail'] = $result['email'];
+          $_SESSION['birthday'] = $result['dob'];
+          $_SESSION['gender'] = $result['gender'];
+          $_SESSION['password'] = Password::decrypt($result['passcode']);
           $this->redirect('home/dashboard');
         }
       }

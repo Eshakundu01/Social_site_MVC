@@ -9,6 +9,12 @@ session_start();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lunamates</title>
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#4e3464">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#4e3464">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#4e3464">
   <!-- Favicon icon -->
   <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
   <!-- Google Fonts -->
@@ -25,6 +31,7 @@ session_start();
   <script src="/assets/js/loginvalidate.js"></script>
 </head>
 <body>
+  <!-- Login Form -->
   <div class="bg">
     <div class="container">
       <div class="content">

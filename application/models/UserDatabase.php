@@ -83,4 +83,19 @@ class UserDatabase {
       return false;
     }
   }
+
+  public function getAllData($mail) {
+    $sql = "select * from user where email='$mail'";
+
+    $result = $this->connection->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        return $row;
+      }
+    } else {
+      return false;
+    }
+  }
 }

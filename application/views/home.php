@@ -10,9 +10,9 @@ session_start();
   <!-- Chrome, Firefox OS and Opera -->
   <meta name="theme-color" content="#c1a3d5">
   <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#ffffff">
+  <meta name="msapplication-navbutton-color" content="#c1a3d5">
   <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#c1a3d5">
   <title>Lunamates</title>
   <!-- Favicon -->
   <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
@@ -79,7 +79,7 @@ session_start();
         </div>
         <!-- Add post and view them -->
         <div class="col-lg-9 col-md-6 col-sm mt-5">
-          <div class="timeline-right">
+          <div>
             <div class="status box">
               <div class="status-menu">
                 <h3 class="status-menu-item">Post Here</h3>

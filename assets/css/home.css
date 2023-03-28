@@ -25,10 +25,7 @@ nav .navbar-nav li a{
 
 .main-container {
   padding: 20px;
-  background-image: url(/assets/images/bg.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background: linear-gradient(to right, #392a55, #94498a, #ffe0f2, #5c4976, #211e3b);
 }
 
 .greetbox {
@@ -184,7 +181,7 @@ nav .navbar-nav li a{
 .album-content {
   padding: 0 20px 20px;
 }
- 
+
 .album-photo {
   width: 100%;
   object-fit: cover;
@@ -192,21 +189,21 @@ nav .navbar-nav li a{
   border-radius: 4px;
   margin-top: 10px;
 }
- 
+
 .album-photos {
   display: flex;
   margin-top: 20px;
   max-height: 30vh;
 }
- 
+
 .album-photos > .album-photo {
   width: 50%;
 }
- 
+
 .album-actions {
   padding: 0 20px 20px;
 }
- 
+
 .album-action {
   margin-right: 20px;
   text-decoration: none;
@@ -220,7 +217,7 @@ nav .navbar-nav li a{
 .album-action i {
   font-size: 20px;
   margin-right: 6px;
-  color: #8f2ec4; 
+  color: #8f2ec4;
 }
 
 .album-action i:hover {
@@ -235,8 +232,8 @@ nav .navbar-nav li a{
 .profile {
   position: relative;
   height: 40vh;
-  min-height: 250px;
-  max-height: 350px;
+  min-height: 255px;
+  max-height: 1200px;
   z-index: 1;
 }
 
@@ -261,18 +258,57 @@ nav .navbar-nav li a{
 }
 
 .profile-img {
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #151728;
 }
 
 .profile-name {
-  margin-left: 24px;
+  margin-left: 15px;
   margin-bottom: 24px;
   font-size: 22px;
-  color: #fff;
+  color: #3d065a;
   font-weight: 600;
+  font-family: "DM Sans", sans-serif;
+}
+
+.avatar-edit {
+  position: relative;
+}
+
+.edit {
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  left: 70%;
+  top: 75%;
+}
+
+.addcover {
+  background-color: #fff;
+  position: absolute;
+  left: 87%;
+  top: 79%;
+}
+
+@media screen and (min-width: 768px) {
+  .fa-plus::after {
+    content: " ADD IMAGE";
+  }
+}
+
+.detailsbox {
+  border-radius: 4px;
+}
+
+.header {
+  border-bottom: 1px solid #5c4976;
+}
+
+.heading {
+  color: #3d065a;
+  font-size: 30px;
   font-family: "DM Sans", sans-serif;
 }

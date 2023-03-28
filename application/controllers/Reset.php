@@ -6,7 +6,7 @@ class Reset extends FrameWork {
     if (isset($_POST['mail'])) {
       if ($this->model('UserDatabase')) {
         $connect = new UserDatabase();
-        if ($connect->emailExist($_POST['mail'])) {
+        if (!($connect->emailExist($_POST['mail']))) {
           echo "You haven't registered yet, please register and try again";
         } else {
           echo "";
