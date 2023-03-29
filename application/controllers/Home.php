@@ -76,12 +76,12 @@ class Home extends FrameWork {
       $this->view('home');
       if ($this->model('UserDatabase')) {
         $connect = new UserDatabase();
-        $result = $connect->getAllData($_SESSION['user']['mail']);
-        if ($result) {
-          $key = Password::decrypt($result['passcode']);
+        $row = $connect->getAllData($_SESSION['user']['mail']);
+        if ($row) {
+          $key = Password::decrypt($row['passcode']);
           $_SESSION['users'] = [
-            'birthday' => $result['dob'],
-            'gender' => $result['gender'],
+            'birthday' => $row['dob'],
+            'gender' => $row['gender'],
             'password' => $key
           ];
         }
