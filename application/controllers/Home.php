@@ -20,12 +20,11 @@ class Home extends FrameWork {
       session_start();
       if ($this->model('UserDatabase')) {
         $connect = new UserDatabase();
-        if ($connect->getAllData($_POST['email'])) {
-          $result = $connect->getAllData($_POST['email']);
-          $key = Password::decrypt($result['passcode']);
+        $result = $connect->getAllData($_POST['email']);
+        if ($result) {
           $_SESSION['user'] = [
             'name' => $result['name'],
-            'mail' => $result['email'],
+            'mail' => $_POST['email']
           ];
           $this->redirect('home/dashboard');
         }
@@ -76,12 +75,12 @@ class Home extends FrameWork {
       $this->view('home');
       if ($this->model('UserDatabase')) {
         $connect = new UserDatabase();
-        $row = $connect->getAllData($_SESSION['user']['mail']);
-        if ($row) {
-          $key = Password::decrypt($row['passcode']);
+        $result = $connect->getAllData($_SESSION['user']['mail']);
+        if ($result) {
+          $key = Password::decrypt($result['passcode']);
           $_SESSION['users'] = [
-            'birthday' => $row['dob'],
-            'gender' => $row['gender'],
+            'birthday' => $result['dob'],
+            'gender' => $result['gender'],
             'password' => $key
           ];
         }
