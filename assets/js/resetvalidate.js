@@ -1,5 +1,5 @@
 $(function () {
-  $('#mail').keyup(function() {
+  $('#mail').on("keyup", debounce(function() {
     var input = $(this).val();
 
     if (input != "") {
@@ -8,14 +8,15 @@ $(function () {
         url:'/reset/authenticate',
         method:'POST',
         data:{mail:input},
+        dataType:'json',
 
         success:function(data) {
-          if (data) {
-            $('#mail-error').html(data);
+          if (data.error) {
+            $('#mail-error').html(data.error);
             $('#mail-error').css("display", "block");
             $('#submit').prop("disabled", true);
           } else {
-            $('#mail-error').html(data);
+            $('#mail-error').html("");
             $('#mail-error').css("display", "block");
             $('#submit').prop("disabled", false);
           }
@@ -24,7 +25,26 @@ $(function () {
     } else {
       $('#mail-error').css("display", "none");
     }
-  });
+  },1000));
+
+  function debounce(callback, interval, immediate) {
+    var timeout;
+  
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) callback.apply(context, args);
+      };          
+  
+      var callNow = immediate && !timeout;
+  
+      clearTimeout(timeout);
+      timeout = setTimeout(later, interval);
+  
+      if (callNow) callback.apply(context, args);
+    };
+  }
 
   $('#submit').on('click', function() {
     var input = $('#mail').val();
@@ -34,8 +54,9 @@ $(function () {
         url:'/reset/action',
         method:'POST',
         data:{email:input},
+        dataType:'json',
         success:function(data) {
-          if (data) {
+          if (data.status) {
             $('#otpbox').modal('show');
             $('#loading').hide();
             $('#resend').prop("disabled", true);
@@ -47,7 +68,7 @@ $(function () {
     }
   });
 
-  $('#pin4').keyup(function() {
+  $('#pin4').on("keyup", function() {
 
     var input = $('#pin1').val() + '' + $('#pin2').val() + '' + $('#pin3').val() + '' + $('#pin4').val();
 
@@ -57,14 +78,15 @@ $(function () {
         method:'POST',
         data:{key:input,
           email:$('#mail').val()},
+        dataType: 'json',
 
         success:function(data) {
-          if (data) {
-            $('#otp-error').html(data);
+          if (data.error) {
+            $('#otp-error').html(data.error);
             $('#resend').prop('disabled', false);
             $('#verified').prop("disabled", true);
           } else {
-            $('#otp-error').html(data);
+            $('#otp-error').html("");
             $('#resend').prop("disabled", true);
             $('#verified').prop("disabled", false);
           }
@@ -74,13 +96,13 @@ $(function () {
   });
 
 
-  $("#view").click(function () {
+  $("#view").on("click", function () {
     $(this).toggleClass("fa-eye fa-eye-slash");
     var type = $(this).hasClass("fa-eye-slash") ? "text" : "password";
     $("#key").attr("type", type);
   });
 
-  $("#display").click(function () {
+  $("#display").on("click", function () {
     $(this).toggleClass("fa-eye fa-eye-slash");
     var type = $(this).hasClass("fa-eye-slash") ? "text" : "password";
     $("#pass").attr("type", type);
@@ -99,8 +121,9 @@ $(function () {
         url:'/reset/action',
         method:'POST',
         data:{email:input},
+        dataType: 'json',
         success:function(data) {
-          if (data) {
+          if (data.status) {
             $('#resend').prop("disabled", true);
             $('#verified').prop("disabled", false);
           }
@@ -109,7 +132,7 @@ $(function () {
     }
   });
 
-  $("#key").keyup(function(){
+  $("#key").on("keyup", function(){
     var number = /([0-9])/;
     var alphabets = /([a-zA-Z])/;
     var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
@@ -126,7 +149,7 @@ $(function () {
     }
   });
 
-  $("#pass").keyup(function(){
+  $("#pass").on("keyup", function(){
     var newpass = $('#key').val();
     if ($(this).val() != newpass) {
       $('#key-error').html("Please re-enter the same password");
@@ -144,6 +167,7 @@ $(function () {
         url:'/reset/change',
         method:'POST',
         data:{email:$('#mail').val(), password:input},
+        dataType:'json',
         success:function(data) {
           if (data) {
             alert("Your password has been reset, use your new password to login");
@@ -157,7 +181,6 @@ $(function () {
 });
 
 let digitValidate = function(ele){
-  console.log(ele.value);
   ele.value = ele.value.replace(/[^0-9]/g,'');
 }
 

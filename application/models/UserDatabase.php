@@ -1,9 +1,26 @@
 <?php
 
+/**
+ * 
+ * UserDatabase is a model that contains queries regarding the database related
+ * to user.
+ * 
+ */
 class UserDatabase {
-
+  /**
+   * 
+   * @var string
+   * Stores the connection of the database.
+   * 
+   */
   protected $connection;
 
+  /**
+   * 
+   * It is a constructor that initiates new database connection.
+   * 
+   * @return void
+   */
   public function __construct() {
     $this->connection = new mysqli(SERVER, USER, PASS, DBNAME);
     // Check connection
@@ -12,6 +29,12 @@ class UserDatabase {
     }
   }
 
+  /**
+   * 
+   * It inserts values in the user table.
+   * 
+   * @return boolean
+   */
   public function insertUserInfo($name, $email, $dob, $gender, $pass) {
     $sql = "insert into user(name, email, dob, gender, passcode) 
       values ('$name', '$email', '$dob', '$gender', '$pass')";
@@ -22,42 +45,49 @@ class UserDatabase {
     }
   }
 
+  /**
+   * 
+   * It checks if mail address already exits based on that a boolean value is
+   * returned.
+   * 
+   * @return boolean
+   */
   public function emailExist($email) {
-    $sql = "select email from user";
+    $sql = "select email from user where email='$email'";
     $result = $this->connection->query($sql);
 
-    if ($result->num_rows > 0) {
-      // output data of each row
-      while($row = $result->fetch_assoc()) {
-        $mailid[] = $row['email'];
-      }
-    }
-
-    if (in_array($email, $mailid)) {
+    if ($result->num_rows) {
       return true;
     } else {
       return false;
     }
   }
 
+  /**
+   * 
+   * It checks if password already exits based on that a boolean value is
+   * returned.
+   * 
+   * @return boolean
+   */
   public function passwordExist($key) {
-    $sql = "select passcode from user";
+    $sql = "select passcode from user where passcode='$key'";
     $result = $this->connection->query($sql);
 
-    if ($result->num_rows > 0) {
-      // output data of each row
-      while($row = $result->fetch_assoc()) {
-        $code[] = $row['passcode'];
-      }
-    }
-
-    if (in_array($key, $code)) {
+    if ($result->num_rows) {
       return true;
     } else {
       return false;
     }
   }
 
+  /**
+   * 
+   * It updates the password in the user table based on the email address on
+   * which otp is generated.
+   * 
+   * @return boolean
+   */
   public function updatePassword($key, $mail) {
     $sql = "update user set passcode='$key' where email in 
     (select email from otp where email='$mail')";
@@ -69,28 +99,18 @@ class UserDatabase {
     }
   }
 
-  public function getName($mail) {
-    $sql = "select * from user where email='$mail'";
-
-    $result = $this->connection->query($sql);
-
-    if ($result->num_rows > 0) {
-      // output data of each row
-      while($row = $result->fetch_assoc()) {
-        return $row['name'];
-      }
-    } else {
-      return false;
-    }
-  }
-
+  /**
+   * 
+   * It fetches all the data related to a particular mail address.
+   * 
+   * @return mixed
+   */
   public function getAllData($mail) {
     $sql = "select * from user where email='$mail'";
 
     $result = $this->connection->query($sql);
 
-    if ($result->num_rows > 0) {
-      // output data of each row
+    if ($result->num_rows) {
       while($row = $result->fetch_assoc()) {
         return $row;
       }

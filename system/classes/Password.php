@@ -29,7 +29,7 @@ class Password {
     // iv - encrypt method AES-256-CBC expects 16 bytes
     $iv = substr(hash('sha256', CRYPTIV), 0, 16);
 
-    $output = openssl_decrypt(base64_decode($string), $method, $key, 0, $iv);
+    $output = openssl_decrypt(base64_decode($pass), $method, $key, 0, $iv);
 
     return $output;
   }

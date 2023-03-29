@@ -1,15 +1,19 @@
 <?php
 
+/**
+ * 
+ * Register is a controller which extends properties from FrameWork class.
+ * 
+ */
 class Register extends FrameWork {
-
   /**
    * 
    * It checks if error is present in the page or not and accordingly  
-   * if it is present then the page is embedded.
+   * if it is not present then data is inserted into the database and an email
+   * is sent to the respective mail address.
    * 
    * @return void
-   */
-  
+   */ 
   public function signup() {
     $this->view('register');
     if (isset($_POST['register'])) {
@@ -18,7 +22,7 @@ class Register extends FrameWork {
           $table = new UserDatabase();
           $password = Password::encrypt($_POST['code']);
 
-          if (!(isset($_POST['geneder']))) {
+          if (!(isset($_POST['gender']))) {
             $gender = "";
           } else {
             $gender = $_POST['gender'];
@@ -43,6 +47,13 @@ class Register extends FrameWork {
     }
   }
 
+  /**
+   * 
+   * This is a static function that checks the name is field is empty, matches 
+   * the pattern of only alphabets and whitespaces are allowed.
+   * 
+   * @return mixed
+   */
   public static function checkName() {
     if (isset($_POST['register'])) {
 
@@ -57,6 +68,13 @@ class Register extends FrameWork {
     }
   }
 
+  /**
+   * 
+   * This checks the mail field is empty, correct format of email address is 
+   * provided and lastly verified using API.
+   * 
+   * @return void
+   */
   public static function checkMail() {
     if (isset($_POST['register'])) {
 
@@ -75,6 +93,14 @@ class Register extends FrameWork {
     }
   }
 
+  /**
+   * 
+   * This checks if date of birth provided is current date, in current year or
+   * current month, if it is a future date or if the user qualifies the
+   * valid age.
+   * 
+   * @return mixed
+   */
   public static function checkBirthDay() {
     if (isset($_POST['register'])) {
 
@@ -109,6 +135,14 @@ class Register extends FrameWork {
     }
   }
 
+  /**
+   * 
+   * This checks if the password field is empty, matches the format of atleast 
+   * one uppercase letter, one lowercase letter, one digit and special character
+   * and lastly if the length is minimum 8 letters.
+   * 
+   * @return void
+   */
   public static function checkPass() {
     if (isset($_POST['register'])) {
 

@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,7 +68,10 @@ session_start();
         <div class="col-lg-3 col-md-6 col-sm mt-5 py-3 greetbox text-center">
           <div><img src="/assets/images/hello.gif" alt="hello" class="greet"></div>
           <div class="font-weight-bold status-menu-item">
-            <?php if (isset($_SESSION['user'])) {echo " " . $_SESSION['user'];}?>
+            <?php 
+            if (isset($_SESSION['user']['name'])) {
+              echo " " . $_SESSION['user']['name'];
+            }?>
           </div>
           <p class="content">Our website welcomes you, find your friends here. For any help send a mail to the given mail address
             <a href="mailto:Lunamates<esha.kundu@innoraft.com>">esha.kundu@innoraft.com</a>
@@ -90,14 +90,18 @@ session_start();
                   <textarea id="postarea" class="status-textarea" placeholder="Write what is on your mind..."></textarea>
                 </div>
                 <div class="status-actions">
-                  <a id="camera" class="status-action">
-                    <input type="image" id="camera" src="/assets/images/camera.png" alt="add-photo"/>
-                    <input type="file" id="upload" class="uploadbtn">
-                  </a>
-                  <a id="video" class="status-action">
-                    <input type="image" src="/assets/images/video.png" alt="add-video">
+                  <span>
+                    <label for="upload">
+                      <img src="/assets/images/camera.png" alt="upload photo" class="status-action"/>
+                    </label>
+                    <input type="file" id="upload" class="uploadbtn" accept=".png, .jpg, .jpeg"/>
+                  </span>
+                  <span>
+                    <label for="video">
+                      <img src="/assets/images/video.png" alt="add-video" class="status-action"/>
+                    </label>
                     <input type="file" id="video" class="uploadbtn">
-                  </a>
+                  </span>
                   <button class="status-share">Share</button>
                 </div>
               </form>

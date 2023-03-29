@@ -1,7 +1,26 @@
 <?php
 
+/**
+ * 
+ * ProfileDatabase is a model that contains queries regarding the database
+ * related to profile.
+ * 
+ */
 class ProfileDatabase {
+  /**
+   * 
+   * @var string
+   * Stores the connection of the database.
+   * 
+   */
+  protected $connection;
 
+  /**
+   * 
+   * It is a constructor that initiates new database connection.
+   * 
+   * @return void
+   */
   public function __construct() {
     $this->connection = new mysqli(SERVER, USER, PASS, DBNAME);
     // Check connection

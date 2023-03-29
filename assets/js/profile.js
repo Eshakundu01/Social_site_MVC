@@ -1,14 +1,6 @@
 $(function () {
-  $("#edit").on('click', function(){
-    $("input[id='imageUpload']").click();
-  });
-
-  $("input[id='imageUpload']").on('change', function(){
+  $("#imageUpload").on('change', function(){
     readURL(this);
-  });
-
-  $("#add").on('click', function(){
-    $("input[id='cover']").click();
   });
 
   $("input[id='cover']").on('change', function(){

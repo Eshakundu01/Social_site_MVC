@@ -40,7 +40,7 @@ class Mail {
     $mail->SMTPSecure = "tls";  
     $mail->Port = 587;  
 
-    $mail->setFrom("esha.kundu@innoraft.com", 'Lunamates');
+    $mail->setFrom(MAILID, 'Lunamates');
 
     $mail->addAddress($emailId);
     $mail->isHTML(true);
@@ -69,7 +69,7 @@ class Mail {
     $mail->SMTPSecure = "tls";  
     $mail->Port = 587;  
     
-    $mail->setFrom("esha.kundu@innoraft.com", 'Lunamates');
+    $mail->setFrom(MAILID, 'Lunamates');
 
     $mail->addAddress($email);
 

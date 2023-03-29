@@ -1,16 +1,28 @@
 <?php
 
+/**
+ * 
+ * Reset is a controller which extends properties from FrameWork class.
+ * 
+ */
 class Reset extends FrameWork {
-
+  /**
+   * 
+   * This checks if email is a registered mail by validating from the database.
+   * It checks the otp entered is correct by validating with the database.
+   * 
+   * @return void
+   */
   public function authenticate() {
     if (isset($_POST['mail'])) {
       if ($this->model('UserDatabase')) {
         $connect = new UserDatabase();
         if (!($connect->emailExist($_POST['mail']))) {
-          echo "You haven't registered yet, please register and try again";
+          $message['error'] = "You haven't registered yet, please register and try again";
         } else {
-          echo "";
+          $message['error'] = false;
         }
+        echo json_encode($message);
       }
     }
 
@@ -21,15 +33,23 @@ class Reset extends FrameWork {
         $result = $connect->getOtp($_POST['email']);
         if ($result) {
           if (!($key == $result)) {
-            echo "Incorrect otp entered, try resend password";
+            $message['error'] = "Incorrect otp entered, try resend password";
           } else {
-            echo "";
+            $message['error'] = false;
           }
         }
+        echo json_encode($message);
       }
     }
   }
 
+  /**
+   * 
+   * This generates a random four digit pin inserts into the database and sends
+   * mail to the respective mail address containing the same pin.
+   * 
+   * @return void
+   */
   public function action() {
     if ($this->model('OtpDataBase')) {
       $connect = new OtpDataBase();
@@ -37,25 +57,33 @@ class Reset extends FrameWork {
       $otp = rand(1000, 9999);
       if ($connect->emailExist($id, $otp, $_POST['email'])) {
         if (Mail::otpSend($otp, $_POST['email'])) {
-          echo "Type in the otp below";
+          $message['status'] = true;
         } else {
-          echo "";
+          $message['status'] = false;
         }
       } else {
-        echo "";
+        $message['status'] = false;
       }
+      echo json_encode($message);
     }
   }
 
+  /**
+   * 
+   * This updates the password in the database.
+   * 
+   * @return void
+   */
   public function change() {
     if ($this->model('UserDatabase')) {
       $connect = new UserDatabase();
       $pass = Password::encrypt($_POST['password']);
       if ($connect->updatePassword($pass, $_POST['email'])) {
-        echo "sucess";
+        $message['status'] = true;
       } else {
-        echo "";
+        $message['status'] = false;
       }
+      echo json_encode($message);
     }
   }
 }

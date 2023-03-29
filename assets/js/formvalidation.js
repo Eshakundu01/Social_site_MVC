@@ -1,5 +1,5 @@
 $(function () {
-  $("#show").click(function () {
+  $("#show").on('click', function () {
     $(this).toggleClass("fa-eye fa-eye-slash");
     var type = $(this).hasClass("fa-eye-slash") ? "text" : "password";
     $("#code").attr("type", type);
@@ -55,7 +55,7 @@ $(function () {
     return $.trim(email).match(pattern) ? true : false;
   }
 
-  $("#code").keyup(function(){
+  $("#code").on("keyup", function(){
     var number = /([0-9])/;
     var alphabets = /([a-zA-Z])/;
     var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;

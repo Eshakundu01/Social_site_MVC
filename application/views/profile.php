@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,19 +69,20 @@
           <div class="form-group profile-avatar">
             <div class="avatar-edit">
               <div class="avatar-preview">
+                <label for="imageUpload">
+                  <img src="/assets/images/defaultimage.png" id="imagePreview" alt="upload profile photo" class="profile-img"/>
+                </label>
                 <input type='file' id="imageUpload" name="imageUpload" class="uploadbtn" accept=".png, .jpg, .jpeg" />
-                <img src="/assets/images/defaultimage.png" id="imagePreview" class="profile-img"/>
               </div>
               <span id="edit" class="edit p-2"><i class="fa fa-pencil"></i></span>
-            </div>
-            <div class="profile-name">
-              <?php if (isset($_SESSION['user'])) {echo " " . $_SESSION['user'];}?>
             </div>
           </div>
           <!-- Cover Picture -->
           <div class="form-group">
+            <label for="cover">
+              <img src="/assets/images/cover.png" id="coverPreview" alt="upload cover photo" class="profile-cover"/>
+            </label>
             <input type="file" id="cover" name="cover" class="uploadbtn" accept=".png, .jpg, .jpeg" />
-            <img src="/assets/images/cover.png" id="coverPreview" alt="coverpic" class="profile-cover">
             <span id="add" class="addcover p-2"><i class="fa fa-plus"></i></span>
           </div>
         </div>
@@ -90,22 +90,102 @@
         <div class="bg-light mt-2 p-4 detailsbox">
           <div class="header">
             <span class="heading">PERSONAL DETAILS</span>
-            <button class="btn btn-primary mb-2 justify-content-end">EDIT</button>
+            <button class="btn btn-primary mb-2 ml-2">EDIT</button>
           </div>
           <div class="form-group mt-2">
-            <label for="name">FULL NAME</label>
-            <input type="text" name="name" id="name" required 
-            <?php echo "value=\"" . $_SESSION['user'] . "\"";  ?>>
+            <label for="name" class="profile-name pr-2">FULL NAME</label>
+            <input type="text" name="name" id="name" class="input-field" required 
+            <?php 
+            if (isset($_POST['name'])) {
+              echo "value=\"" . $_POST['name'] . "\""; 
+            } else {
+              echo "value=\"" . $_SESSION['user']['name'] . "\"";
+            } 
+            ?>>
           </div>
           <div class="form-group mt-2">
-            <label for="name">EMAIL-ID</label>
-            <input type="text" name="email" id="email" required 
-            <?php echo "value=\"" . $_SESSION['mail'] . "\"";  ?>>
+            <label for="email" class="profile-name pr-2">EMAIL-ID</label>
+            <input type="text" name="email" id="email" class="input-field"
+            <?php 
+              echo "value=\"" . $_SESSION['user']['mail'] . "\"";   
+            ?>>
           </div>
           <div class="form-group mt-2">
-            <label for="name">DATE OF BIRTH</label>
-            <input type="date" name="birthday" id="birthday" required 
-            <?php echo "value=\"" . $_SESSION['birthday'] . "\"";  ?>>
+            <label for="key" class="profile-name pr-2">PASSWORD</label>
+            <input type="password" name="key" id="key" class="input-field"
+            <?php 
+              echo "value=\"" . $_SESSION['users']['password'] . "\"";  
+            ?>>
+          </div>
+          <div class="form-group mt-2">
+            <label for="birthday" class="profile-name pr-2">DATE OF BIRTH</label>
+            <input type="date" name="birthday" id="birthday" class="input-field" required 
+            <?php 
+            if (isset($_POST['birthday'])) {
+              echo "value=\"" . $_POST['birthday'] . "\""; 
+            } else {
+              echo "value=\"" . $_SESSION['users']['birthday'] . "\"";
+            }   
+            ?>>
+          </div>
+          <div class="form-group mt-2">
+            <span class="profile-name pr-2">GENDER</span>
+            <ul class="gender">
+              <li class="pr-3">
+                <input type="radio" name="gender" class="select" value="male" 
+                <?php
+                if (isset($_POST['gender']) && $_POST['gender']=="male") {
+                  echo "checked";
+                } elseif ($_SESSION['users']['gender'] == "male") {
+                  echo "checked";
+                }?>>
+                Male
+              </li>
+              <li class="pr-3">
+                <input type="radio" name="gender" class="select" value="female"
+                <?php 
+                if (isset($_POST['gender']) && $_POST['gender']=="female") {
+                  echo "checked";
+                } elseif ($_SESSION['users']['gender'] == "female") {
+                  echo "checked";
+                }
+                ?>>
+                Female
+              </li>
+              <li class="pr-3">
+                <input type="radio" name="gender" class="select" value="others"
+                <?php
+                if (isset($_POST['gender']) && $_POST['gender']=="others") {
+                  echo "checked";
+                } elseif ($_SESSION['users']['gender'] == "others") {
+                  echo "checked";
+                }
+                ?>>
+                Others
+              </li>
+            </ul>
+          </div>
+          <div class="form-group mt-2">
+            <label for="place" class="profile-name pr-2">LIVES IN</label>
+            <input type="text" name="place" id="place" required class="input-field"
+            <?php 
+            if (isset($_POST['name'])) {
+              echo "value=\"" . $_POST['name'] . "\""; 
+            }
+            ?>>
+          </div>
+          <div class="form-group mt-2">
+            <label for="about" class="profile-name pr-2">ABOUT YOU</label>
+            <textarea name="about" id="about" class="input-field">
+            <?php 
+            if (isset($_POST['about'])) {
+              echo $_POST['about']; 
+            } 
+            ?>
+            </textarea>
+          </div>
+          <div class="form-group mt-2">
+            <input type="submit" name="submit" class="btn btn-info" value="SUBMIT">
           </div>
         </div>
       </form>

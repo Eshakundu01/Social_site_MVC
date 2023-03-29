@@ -5,7 +5,6 @@
  * It separates the controller, methods and parameters from the url
  * 
  */
-
 class Route {
   /**
    * 
@@ -13,7 +12,6 @@ class Route {
    * Stores the controller name, it initially consists of default value home.
    * 
    */
-
   protected $controller = "Home";
 
   /**
@@ -21,7 +19,6 @@ class Route {
    * Stores the method name, it initially consists of default value index.
    * 
    */
-
   protected $method = "index";
 
   /**
@@ -39,7 +36,6 @@ class Route {
    * 
    * @return void
    */
-
   public function __construct() {
     $url = $this->parse();
 
@@ -72,8 +68,7 @@ class Route {
    * 
    * @return array
    * 
-   */
-  
+   */ 
   public function parse() {
     return explode('/', ucfirst(filter_var(trim($_SERVER['REQUEST_URI'], '/'), FILTER_SANITIZE_URL)));
   }   
