@@ -63,38 +63,61 @@
   <!-- Body content -->
   <div class="main-container">
     <div class="container">
-      <form action="" method="POST">
-        <div class="profile">
-          <!-- Profile Picture -->
-          <div class="form-group profile-avatar">
-            <div class="avatar-edit">
-              <div class="avatar-preview">
-                <label for="imageUpload">
-                  <img src="/assets/images/defaultimage.png" id="imagePreview" alt="upload profile photo" class="profile-img"/>
-                </label>
-                <input type='file' id="imageUpload" name="imageUpload" class="uploadbtn" accept=".png, .jpg, .jpeg" />
-              </div>
-              <span id="edit" class="edit p-2"><i class="fa fa-pencil"></i></span>
+      <div class="bg-success"><?php if (isset($success)) {echo $sucess;}?></div>
+      <div class="profile">
+        <!-- Profile Picture -->
+        <div class="profile-avatar">
+          <form action="/home/profile" method="POST" enctype="multipart/form-data">
+            <div class="form-group avatar-preview">
+              <img src="<?php
+              if (isset($_FILES['imageUpload']['name'])) {
+                echo '/assets/uploads/' . $_FILES['imageUpload']['name'];
+              } elseif (isset($_SESSION['users']['profile'])) {
+                echo '/assets/uploads/' . $_SESSION['users']['profile'];
+              } else {
+                echo '/assets/uploads/' . $_SESSION['user']['photo'];
+              }
+              ?>" alt="upload profile photo" class="profile-img"/>
+              <label for="imageUpload">
+                <span class="edit p-2"><i class="fa fa-pencil"></i></span>
+              </label>
+              <input type='file' id="imageUpload" name="imageUpload" class="uploadbtn" accept=".png, .jpg, .jpeg" />
             </div>
-          </div>
+            <div class="text-center uploadbtn" id="uploadpic">
+              <input type="submit" name="upload" class="btn btn-primary" value="UPDATE">
+            </div>
+          </form>
+        </div>
+        <form action="/home/profile" method="POST" enctype="multipart/form-data">
           <!-- Cover Picture -->
           <div class="form-group">
+            <img src="<?php
+            if (isset($_FILES['cover']['name'])) {
+              echo '/assets/uploads/' . $_FILES['cover']['name'];
+            } else {
+              echo '/assets/uploads/' . $_SESSION['users']['coverphoto'];
+            }
+            ?>" alt="upload cover photo" class="profile-cover"/>
             <label for="cover">
-              <img src="/assets/images/cover.png" id="coverPreview" alt="upload cover photo" class="profile-cover"/>
+              <span id="add" class="addcover p-2"><i class="fa fa-plus"></i></span>
             </label>
             <input type="file" id="cover" name="cover" class="uploadbtn" accept=".png, .jpg, .jpeg" />
-            <span id="add" class="addcover p-2"><i class="fa fa-plus"></i></span>
+            <div class="coverupdate uploadbtn" id="change">
+              <input type="submit" name="change" class="btn btn-primary" value="UPDATE">
+            </div>
           </div>
+        </form>
+      </div>
+      <!-- Personal details -->
+      <div class="bg-light mt-2 p-4 detailsbox">
+        <div class="header">
+          <span class="heading">PERSONAL DETAILS</span>
+          <button id="edit" class="btn btn-primary mb-2 ml-2">EDIT</button>
         </div>
-        <!-- Personal details -->
-        <div class="bg-light mt-2 p-4 detailsbox">
-          <div class="header">
-            <span class="heading">PERSONAL DETAILS</span>
-            <button class="btn btn-primary mb-2 ml-2">EDIT</button>
-          </div>
+        <form action="" method="POST">
           <div class="form-group mt-2">
             <label for="name" class="profile-name pr-2">FULL NAME</label>
-            <input type="text" name="name" id="name" class="input-field" required 
+            <input type="text" name="name" id="name" class="input-field fields" required 
             <?php 
             if (isset($_POST['name'])) {
               echo "value=\"" . $_POST['name'] . "\""; 
@@ -108,18 +131,11 @@
             <input type="text" name="email" id="email" class="input-field"
             <?php 
               echo "value=\"" . $_SESSION['user']['mail'] . "\"";   
-            ?>>
-          </div>
-          <div class="form-group mt-2">
-            <label for="key" class="profile-name pr-2">PASSWORD</label>
-            <input type="password" name="key" id="key" class="input-field"
-            <?php 
-              echo "value=\"" . $_SESSION['users']['password'] . "\"";  
-            ?>>
+            ?> disabled>
           </div>
           <div class="form-group mt-2">
             <label for="birthday" class="profile-name pr-2">DATE OF BIRTH</label>
-            <input type="date" name="birthday" id="birthday" class="input-field" required 
+            <input type="date" name="birthday" id="birthday" class="input-field fields" required 
             <?php 
             if (isset($_POST['birthday'])) {
               echo "value=\"" . $_POST['birthday'] . "\""; 
@@ -132,7 +148,7 @@
             <span class="profile-name pr-2">GENDER</span>
             <ul class="gender">
               <li class="pr-3">
-                <input type="radio" name="gender" class="select" value="male" 
+                <input type="radio" name="gender" class="select fields" value="male" 
                 <?php
                 if (isset($_POST['gender']) && $_POST['gender']=="male") {
                   echo "checked";
@@ -142,7 +158,7 @@
                 Male
               </li>
               <li class="pr-3">
-                <input type="radio" name="gender" class="select" value="female"
+                <input type="radio" name="gender" class="select fields" value="female"
                 <?php 
                 if (isset($_POST['gender']) && $_POST['gender']=="female") {
                   echo "checked";
@@ -153,7 +169,7 @@
                 Female
               </li>
               <li class="pr-3">
-                <input type="radio" name="gender" class="select" value="others"
+                <input type="radio" name="gender" class="select fields" value="others"
                 <?php
                 if (isset($_POST['gender']) && $_POST['gender']=="others") {
                   echo "checked";
@@ -167,28 +183,32 @@
           </div>
           <div class="form-group mt-2">
             <label for="place" class="profile-name pr-2">LIVES IN</label>
-            <input type="text" name="place" id="place" required class="input-field"
+            <input type="text" name="place" id="place" required class="input-field fields"
             <?php 
-            if (isset($_POST['name'])) {
-              echo "value=\"" . $_POST['name'] . "\""; 
-            }
+            if (isset($_POST['place'])) {
+              echo "value=\"" . $_POST['place'] . "\""; 
+            } else {
+              echo "value=\"" . $_SESSION['users']['home'] . "\"";
+            } 
             ?>>
           </div>
           <div class="form-group mt-2">
             <label for="about" class="profile-name pr-2">ABOUT YOU</label>
-            <textarea name="about" id="about" class="input-field">
+            <textarea name="about" id="about" class="input-field fields">
             <?php 
             if (isset($_POST['about'])) {
               echo $_POST['about']; 
-            } 
+            } else {
+              echo $_SESSION['users']['about'];
+            }
             ?>
             </textarea>
           </div>
           <div class="form-group mt-2">
-            <input type="submit" name="submit" class="btn btn-info" value="SUBMIT">
+            <input type="submit" name="submit" class="btn btn-info" value="SAVE">
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 

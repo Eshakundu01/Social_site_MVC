@@ -9,9 +9,10 @@
 class UserDatabase {
   /**
    * 
-   * @var string
    * Stores the connection of the database.
    * 
+   * @var mixed
+   * @access protected
    */
   protected $connection;
 
@@ -33,11 +34,16 @@ class UserDatabase {
    * 
    * It inserts values in the user table.
    * 
+   * @param string $name the name of the current user.
+   * @param string $email it is mail address of the current user.
+   * @param string $dob date of birth of the user.
+   * @param string $gender whether the user is female, male or others.
+   * @param string $pass atleat 8 letter password.
    * @return boolean
    */
   public function insertUserInfo($name, $email, $dob, $gender, $pass) {
-    $sql = "insert into user(name, email, dob, gender, passcode) 
-      values ('$name', '$email', '$dob', '$gender', '$pass')";
+    $sql = "insert into user(name, email, dob, gender, passcode, userpic, coverpic, place, about) 
+      values ('$name', '$email', '$dob', '$gender', '$pass', 'defaultimage.png', 'cover.png', NULL, NULL)";
     if ($this->connection->query($sql)) {
       return true;
     } else {
@@ -50,6 +56,7 @@ class UserDatabase {
    * It checks if mail address already exits based on that a boolean value is
    * returned.
    * 
+   * @param string $email it is mail address of the current user.
    * @return boolean
    */
   public function emailExist($email) {
@@ -68,6 +75,7 @@ class UserDatabase {
    * It checks if password already exits based on that a boolean value is
    * returned.
    * 
+   * @param string $key password value.
    * @return boolean
    */
   public function passwordExist($key) {
@@ -86,6 +94,8 @@ class UserDatabase {
    * It updates the password in the user table based on the email address on
    * which otp is generated.
    * 
+   * @param string $key password value.
+   * @param string $email it is mail address of the current user.
    * @return boolean
    */
   public function updatePassword($key, $mail) {
@@ -103,6 +113,7 @@ class UserDatabase {
    * 
    * It fetches all the data related to a particular mail address.
    * 
+   * @param string $email it is mail address of the current user.
    * @return mixed
    */
   public function getAllData($mail) {
@@ -114,6 +125,24 @@ class UserDatabase {
       while($row = $result->fetch_assoc()) {
         return $row;
       }
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * 
+   * It updates the data in the user table.
+   * 
+   * @param string $email it is mail address of the current user.
+   * @param string $statement the field to be set.
+   * @return boolean
+   */
+  public function updateData($mail, $statement) {
+    $sql = "update user set " . $statement . " where email='$mail'";
+
+    if ($this->connection->query($sql)) {
+      return true;
     } else {
       return false;
     }

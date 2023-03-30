@@ -1,0 +1,2 @@
+In this folder the images which are uploaded by the user are stored that maybe
+the profile images or the cover images.

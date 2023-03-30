@@ -86,7 +86,13 @@
               </div>
               <form action="" method="POST" enctype="multipart/form-data">
                 <div class="status-main">
-                  <img src="" class="status-img">
+                  <img src="<?php 
+                  if (isset($_SESSION['pic'])) {
+                    echo '/assets/uploads/' . $_SESSION['pic'];
+                  } else {
+                    echo '/assets/uploads/' . $_SESSION['user']['photo'];
+                  } 
+                  ?>" class="status-img">
                   <textarea id="postarea" class="status-textarea" placeholder="Write what is on your mind..."></textarea>
                 </div>
                 <div class="status-actions">
@@ -108,7 +114,13 @@
             </div>
             <div class="album box mt-3">
               <div class="status-main">
-                <img src="" class="status-img" />
+                <img src="<?php
+                if (isset($_SESSION['pic'])) {
+                  echo '/assets/uploads/' . $_SESSION['pic'];
+                } else {
+                  echo '/assets/uploads/' . $_SESSION['user']['photo'];
+                }
+                ?>" alt="profile-photo" class="status-img" />
                 <div class="album-detail">
                   <div class="album-title"><strong></strong></div>
                   <div class="album-date"></div>

@@ -2,8 +2,20 @@
 
 require_once 'config/secret.php';
 
+/**
+ * 
+ * Password is a class that consists of two function encrypt and decrpt.
+ * 
+ */
 class Password {
-
+  /**
+   * 
+   * It encrypts the string into a hash value.
+   * 
+   * @param string $pass the password of the user.
+   * @static
+   * @return string
+   */
   public static function encrypt($pass) {
 
     $method = 'AES-256-CBC';
@@ -19,6 +31,14 @@ class Password {
     return $output;
   }
 
+  /**
+   * 
+   * It decrypts the hash value into a string.
+   * 
+   * @param string $pass hash value of the password.
+   * @static
+   * @return string
+   */
   public static function decrypt($pass) {
 
     $method = 'AES-256-CBC';

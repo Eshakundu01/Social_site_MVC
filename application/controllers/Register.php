@@ -52,6 +52,7 @@ class Register extends FrameWork {
    * This is a static function that checks the name is field is empty, matches 
    * the pattern of only alphabets and whitespaces are allowed.
    * 
+   * @static
    * @return mixed
    */
   public static function checkName() {
@@ -73,6 +74,7 @@ class Register extends FrameWork {
    * This checks the mail field is empty, correct format of email address is 
    * provided and lastly verified using API.
    * 
+   * @static
    * @return void
    */
   public static function checkMail() {
@@ -84,11 +86,11 @@ class Register extends FrameWork {
       } elseif (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
         return "Invalid email format is used please correct it, then register with us!";
       } else {
-        if (Mail::verifyMail($_POST['mail'])) {
-          return "Not a vaild email address provided. Provide a valid email and register with us!";
-        } else {
-          return false;
-        }
+        // if (Mail::verifyMail($_POST['mail'])) {
+        //   return "Not a vaild email address provided. Provide a valid email and register with us!";
+        // } else {
+        //   return false;
+        // }
       }
     }
   }
@@ -99,6 +101,7 @@ class Register extends FrameWork {
    * current month, if it is a future date or if the user qualifies the
    * valid age.
    * 
+   * @static
    * @return mixed
    */
   public static function checkBirthDay() {
@@ -141,6 +144,7 @@ class Register extends FrameWork {
    * one uppercase letter, one lowercase letter, one digit and special character
    * and lastly if the length is minimum 8 letters.
    * 
+   * @static
    * @return void
    */
   public static function checkPass() {

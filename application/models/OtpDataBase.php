@@ -9,8 +9,9 @@
 class OtpDataBase {
   /**
    * 
-   * @var string
    * Stores the connection of the database.
+   * @var mixed
+   * @access protected
    * 
    */
   protected $connection;
@@ -35,6 +36,9 @@ class OtpDataBase {
    * inserted into the database. If mail does not exists then it is just
    * inserted.
    * 
+   * @param int $id a unique paramtere of the database.
+   * @param int $otp a four digit integer.
+   * @param string $email it is mail address of the current user.
    * @return boolean
    */
   public function emailExist($id, $otp, $email) {
@@ -53,6 +57,9 @@ class OtpDataBase {
    * 
    * It inserts the data into the otp table.
    * 
+   * @param int $id a unique paramtere of the database.
+   * @param int $otp a four digit integer.
+   * @param string $email it is mail address of the current user.
    * @return boolean
    */
   public function insertOtp($id, $otp, $email) {
@@ -70,6 +77,7 @@ class OtpDataBase {
    * It selects the otp column which matches the mail address and returns the
    * otp.
    * 
+   * @param string $email it the mail address of the current user.
    * @return mixed
    */
   public function getOtp($email) {
@@ -89,6 +97,7 @@ class OtpDataBase {
    * 
    * It deletes the row checking the mail address.
    * 
+   * @param string $mail it is the mail address of the current user.
    * @return boolean
    */
   public function deleteRow($mail) {

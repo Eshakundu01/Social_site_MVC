@@ -24,7 +24,8 @@ class Home extends FrameWork {
         if ($result) {
           $_SESSION['user'] = [
             'name' => $result['name'],
-            'mail' => $_POST['email']
+            'mail' => $_POST['email'],
+            'photo' => $result['userpic']
           ];
           $this->redirect('home/dashboard');
         }
@@ -81,7 +82,11 @@ class Home extends FrameWork {
           $_SESSION['users'] = [
             'birthday' => $result['dob'],
             'gender' => $result['gender'],
-            'password' => $key
+            'password' => $key,
+            'profile' => $_SESSION['pic'],
+            'coverphoto' => $result['coverpic'],
+            'home' => $result['place'],
+            'about' => $result['about']
           ];
         }
       }
@@ -117,6 +122,38 @@ class Home extends FrameWork {
       $this->redirect('home/index');
     } else {
       $this->view('profile');
+    }
+
+    if (isset($_POST['upload'])) {
+      $email = $_SESSION['user']['mail'];
+      $fileName = $_FILES['imageUpload']['name'];
+      $filePath = 'assets/uploads/' . basename($fileName);
+      move_uploaded_file($_FILES['imageUpload']['tmp_name'], $filePath);
+      if ($this->model('UserDatabase')) {
+        $connect = new UserDatabase();
+        if ($connect->updateData($email, "userpic='$fileName'")) {
+          echo "<script>alert('Successfully updated');</script>";
+          $_SESSION['pic'] = $fileName;
+          unset($_POST['upload']);
+        } else {
+          echo "<script>alert('Could not update');</script>";
+        }
+      }
+    }
+
+    if (isset($_POST['change'])) {
+      $email = $_SESSION['user']['mail'];
+      $fileName = $_FILES['cover']['name'];
+      $filePath = 'assets/uploads/' . basename($fileName);
+      move_uploaded_file($_FILES['cover']['tmp_name'], $filePath);
+      if ($this->model('UserDatabase')) {
+        $connect = new UserDatabase();
+        if ($connect->updateData($email, "coverpic='$fileName'")) {
+          echo "<script>alert('Successfully updated');</script>";
+        } else {
+          echo "<script>alert('Could not update');</script>";
+        }
+      }
     }
   }
 

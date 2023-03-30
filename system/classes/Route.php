@@ -8,24 +8,27 @@
 class Route {
   /**
    * 
-   * @var string
    * Stores the controller name, it initially consists of default value home.
    * 
+   * @var string
+   * @access protected
    */
   protected $controller = "Home";
 
   /**
-   * @var string 
    * Stores the method name, it initially consists of default value index.
    * 
+   * @var string
+   * @access protected
    */
   protected $method = "index";
 
   /**
    * 
-   * @var array
    * Stores parameters that are passed in the url.
    * 
+   * @var string
+   * @access protected
    */
   protected $param = [];
   

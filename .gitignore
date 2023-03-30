@@ -1,3 +1,6 @@
 assets/images/
 vendor/
 config/secret.php
+assets/uploads/*.png
+assets/uploads/*.jpg
+assets/uploads/*.jpeg

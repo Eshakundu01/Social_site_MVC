@@ -9,8 +9,21 @@ use PHPMailer\PHPMailer\Exception;
 require_once 'vendor/autoload.php';
 require_once 'config/secret.php';
 
+/**
+ * 
+ * Mail is a class that performs functions related to validating the mail
+ * address, sending registration mail, sending OTP through mail.
+ * 
+ */
 class Mail {
-
+  /**
+   * 
+   * It verifies if the mail address provided actually exists.
+   * 
+   * @param string $mail the mail address of the user.
+   * @static
+   * @return boolean
+   */
   public static function verifyMail($mail) {
     $client = new GuzzleHttp\Client();
     $response = $client->request('GET', 'https://api.apilayer.com/email_verification/check?email='.$mail, [
@@ -28,6 +41,14 @@ class Mail {
     }
   }
 
+  /**
+   * 
+   * It sends an email to the user after successful registration.
+   * 
+   * @param string $emailId the mail address of the user.
+   * @static
+   * @return boolean
+   */
   public static function registrationMail($emailId) {
     $mail = new PHPMailer(true);  
     // Set up PHPMailer to use SMTP
@@ -57,6 +78,15 @@ class Mail {
     }
   }
 
+  /**
+   * 
+   * It sends OTP to the user on request.
+   * 
+   * @param int $pin the pin which is send through email.
+   * @param string $email the mail address of the user.
+   * @static
+   * @return boolean
+   */
   public static function otpSend($pin, $email) {
     $mail = new PHPMailer(true);  
     // Set up PHPMailer to use SMTP
