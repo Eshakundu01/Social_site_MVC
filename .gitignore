@@ -4,3 +4,7 @@ config/secret.php
 assets/uploads/*.png
 assets/uploads/*.jpg
 assets/uploads/*.jpeg
+assets/video/*.mp4
+assets/video/*.avi
+assets/video/*.mov
+assets/video/*.mpeg

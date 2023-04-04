@@ -1,0 +1,1 @@
+This folder contains all the video files stored when uploaded in the post.

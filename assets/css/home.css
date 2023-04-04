@@ -89,7 +89,7 @@ nav .navbar-nav li a{
   border: none;
   resize: none;
   margin-top: 15px;
-  color: #fff;
+  color: #4a3060;
   max-width: calc(100% - 70px);
 }
 
@@ -346,4 +346,10 @@ nav .navbar-nav li a{
 
 .fields {
   pointer-events: none;
+}
+
+.tick {
+  display: none;
+  font-size: 40px;
+  padding-right: 10px;
 }

@@ -1,3 +1,13 @@
+<?php 
+
+require_once 'application/controllers/Post.php';
+
+$view = new Post();
+
+// $rows = $view->updatedPost();
+$tuples = $view->allPost();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,20 +81,23 @@
             <?php 
             if (isset($_SESSION['user']['name'])) {
               echo " " . $_SESSION['user']['name'];
+            } elseif (isset($_SESSION['newname'])) {
+              echo " " . $_SESSION['newname'];
             }?>
           </div>
           <p class="content">Our website welcomes you, find your friends here. For any help send a mail to the given mail address
             <a href="mailto:Lunamates<esha.kundu@innoraft.com>">esha.kundu@innoraft.com</a>
           </p>
         </div>
-        <!-- Add post and view them -->
+
+        <!-- Create a new post and post the same-->
         <div class="col-lg-9 col-md-6 col-sm mt-5">
           <div>
             <div class="status box">
               <div class="status-menu">
                 <h3 class="status-menu-item">Post Here</h3>
               </div>
-              <form action="" method="POST" enctype="multipart/form-data">
+              <form action="/post/share" method="POST" enctype="multipart/form-data">
                 <div class="status-main">
                   <img src="<?php 
                   if (isset($_SESSION['pic'])) {
@@ -93,42 +106,64 @@
                     echo '/assets/uploads/' . $_SESSION['user']['photo'];
                   } 
                   ?>" class="status-img">
-                  <textarea id="postarea" class="status-textarea" placeholder="Write what is on your mind..."></textarea>
+                  <textarea name="postarea" class="status-textarea" placeholder="Write what is on your mind..."></textarea>
                 </div>
                 <div class="status-actions">
                   <span>
                     <label for="upload">
-                      <img src="/assets/images/camera.png" alt="upload photo" class="status-action"/>
+                      <img src="/assets/images/camera.png" id="image" alt="upload photo" class="status-action"/>
+                      <i id="check" class="fa fa-check text-success tick"></i>
                     </label>
-                    <input type="file" id="upload" class="uploadbtn" accept=".png, .jpg, .jpeg"/>
+                    <input type="file" id="upload" name="upload" class="uploadbtn" accept=".png, .jpg, .jpeg"/>
                   </span>
                   <span>
                     <label for="video">
-                      <img src="/assets/images/video.png" alt="add-video" class="status-action"/>
+                      <img src="/assets/images/video.png" id="videofile" alt="add-video" class="status-action"/>
+                      <i id="select" class="fa fa-check text-success tick"></i>
                     </label>
-                    <input type="file" id="video" class="uploadbtn">
+                    <input type="file" id="video" name="video" class="uploadbtn" accept=".mp4, .avi, .mov, .mpeg">
                   </span>
-                  <button class="status-share">Share</button>
+                  <input type="submit" name="submit" class="status-share" value="Share" />
                 </div>
               </form>
             </div>
-            <div class="album box mt-3">
+
+            <?php
+            if ($tuples) {
+              for ($i=0; $i<count($tuples); $i++) {
+            ?>
+            <!-- View the post -->
+            <div class="album box my-3">
               <div class="status-main">
-                <img src="<?php
-                if (isset($_SESSION['pic'])) {
-                  echo '/assets/uploads/' . $_SESSION['pic'];
-                } else {
-                  echo '/assets/uploads/' . $_SESSION['user']['photo'];
-                }
-                ?>" alt="profile-photo" class="status-img" />
+                <img src="<?php echo '/assets/uploads/' . $tuples[$i]['userimage']; ?>" 
+                alt="profile-photo" class="status-img" />
                 <div class="album-detail">
-                  <div class="album-title"><strong></strong></div>
-                  <div class="album-date"></div>
+                  <div class="album-title">
+                    <strong>
+                      <?php 
+                      echo $tuples[$i]['username'];
+                      ?>
+                    </strong>
+                  </div>
+                  <div class="album-date"><?php echo $tuples[$i]['date'];?></div>
                 </div>
               </div>
               <div class="album-content">
+                <p class="m-0 p-1"><?php echo $tuples[$i]['content'];?></p>
                 <div class="album-photos">
-                  <img src="" alt="" class="album-photo" />
+                  <img src="<?php if ($tuples[$i]['image']) {
+                    echo '/assets/uploads/' . $tuples[$i]['image'];} 
+                  ?>" alt="" class="album-photo" />
+                </div>
+                <div class="album-photos">
+                  <?php if ($tuples[$i]['video']) {
+                  ?>
+                    <video width="400" controls>
+                      <source src="<?php echo '/assets/video/' . $tuples[$i]['video'];?>" />
+                    </video>
+                  <?php
+                    }
+                  ?>
                 </div>
               </div>
               <div class="album-actions">
@@ -143,6 +178,10 @@
                 </a>
               </div>
             </div>
+            <?php
+                }
+              }
+            ?>
           </div>
         </div>
       </div>

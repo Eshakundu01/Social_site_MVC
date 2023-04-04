@@ -1,3 +1,7 @@
+<?php
+require_once 'application/controllers/Profile.php';
+$profile_obj = new Profile();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,17 +67,22 @@
   <!-- Body content -->
   <div class="main-container">
     <div class="container">
-      <div class="bg-success"><?php if (isset($success)) {echo $sucess;}?></div>
+      <div class="bg-light mb-2 p-3 text-primary" id="success">
+        <?php 
+        if ($profile_obj->update()) 
+          {echo "Successfully updated";}
+        ?>
+      </div>
       <div class="profile">
         <!-- Profile Picture -->
         <div class="profile-avatar">
-          <form action="/home/profile" method="POST" enctype="multipart/form-data">
+          <form action="/profile/update" method="POST" enctype="multipart/form-data">
             <div class="form-group avatar-preview">
               <img src="<?php
-              if (isset($_FILES['imageUpload']['name'])) {
-                echo '/assets/uploads/' . $_FILES['imageUpload']['name'];
-              } elseif (isset($_SESSION['users']['profile'])) {
-                echo '/assets/uploads/' . $_SESSION['users']['profile'];
+              if ($profile_obj->update() and $profile_obj->getPhoto()) {
+                echo '/assets/uploads/' . $profile_obj->getPhoto();
+              } elseif (isset($_SESSION['users']['photo'])) {
+                echo '/assets/uploads/' . $_SESSION['users']['photo'];
               } else {
                 echo '/assets/uploads/' . $_SESSION['user']['photo'];
               }
@@ -88,14 +97,16 @@
             </div>
           </form>
         </div>
-        <form action="/home/profile" method="POST" enctype="multipart/form-data">
+        <form action="/profile/update" method="POST" enctype="multipart/form-data">
           <!-- Cover Picture -->
           <div class="form-group">
             <img src="<?php
-            if (isset($_FILES['cover']['name'])) {
-              echo '/assets/uploads/' . $_FILES['cover']['name'];
+            if ($profile_obj->update() and $profile_obj->getCover()) {
+              echo '/assets/uploads/' . $profile_obj->getCover();
+            } elseif ($_SESSION['users']['coverPhoto']) {
+              echo "/assets/uploads/" . $_SESSION['users']['coverPhoto'];
             } else {
-              echo '/assets/uploads/' . $_SESSION['users']['coverphoto'];
+              echo '/assets/uploads/' . $_SESSION['user']['coverPhoto'];
             }
             ?>" alt="upload cover photo" class="profile-cover"/>
             <label for="cover">
@@ -114,16 +125,18 @@
           <span class="heading">PERSONAL DETAILS</span>
           <button id="edit" class="btn btn-primary mb-2 ml-2">EDIT</button>
         </div>
-        <form action="" method="POST">
+        <form action="/profile/update" method="POST">
           <div class="form-group mt-2">
             <label for="name" class="profile-name pr-2">FULL NAME</label>
             <input type="text" name="name" id="name" class="input-field fields" required 
             <?php 
             if (isset($_POST['name'])) {
               echo "value=\"" . $_POST['name'] . "\""; 
+            } elseif (isset($_SESSION['users']['name'])) {
+              echo "value=\"" . $_SESSION['users']['name'] . "\"";
             } else {
               echo "value=\"" . $_SESSION['user']['name'] . "\"";
-            } 
+            }
             ?>>
           </div>
           <div class="form-group mt-2">
@@ -139,9 +152,11 @@
             <?php 
             if (isset($_POST['birthday'])) {
               echo "value=\"" . $_POST['birthday'] . "\""; 
-            } else {
+            } elseif (isset($_SESSION['users']['birthday'])) {
               echo "value=\"" . $_SESSION['users']['birthday'] . "\"";
-            }   
+            } else {
+              echo "value=\"" . $_SESSION['user']['birthday'] . "\"";
+            }  
             ?>>
           </div>
           <div class="form-group mt-2">
@@ -154,7 +169,9 @@
                   echo "checked";
                 } elseif ($_SESSION['users']['gender'] == "male") {
                   echo "checked";
-                }?>>
+                } elseif ($_SESSION['user']['gender'] == "male") {
+                  echo "checked";
+                } ?>>
                 Male
               </li>
               <li class="pr-3">
@@ -163,6 +180,8 @@
                 if (isset($_POST['gender']) && $_POST['gender']=="female") {
                   echo "checked";
                 } elseif ($_SESSION['users']['gender'] == "female") {
+                  echo "checked";
+                } elseif ($_SESSION['user']['gender'] == "female") {
                   echo "checked";
                 }
                 ?>>
@@ -175,6 +194,8 @@
                   echo "checked";
                 } elseif ($_SESSION['users']['gender'] == "others") {
                   echo "checked";
+                } elseif ($_SESSION['user']['gender'] == "others") {
+                  echo "checked";
                 }
                 ?>>
                 Others
@@ -183,12 +204,14 @@
           </div>
           <div class="form-group mt-2">
             <label for="place" class="profile-name pr-2">LIVES IN</label>
-            <input type="text" name="place" id="place" required class="input-field fields"
+            <input type="text" name="place" id="place" class="input-field fields"
             <?php 
             if (isset($_POST['place'])) {
               echo "value=\"" . $_POST['place'] . "\""; 
-            } else {
+            } elseif ($_SESSION['users']['home']) {
               echo "value=\"" . $_SESSION['users']['home'] . "\"";
+            } else {
+              echo "value=\"" . $_SESSION['user']['home'] . "\"";
             } 
             ?>>
           </div>
@@ -198,8 +221,10 @@
             <?php 
             if (isset($_POST['about'])) {
               echo $_POST['about']; 
-            } else {
+            } elseif ($_SESSION['users']['about']) {
               echo $_SESSION['users']['about'];
+            } else {
+              echo $_SESSION['user']['about'];
             }
             ?>
             </textarea>

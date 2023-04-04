@@ -12,4 +12,5 @@ $(function () {
     $("#name").focus();
     $(".fields").css("pointer-events","auto");
   });
+
 });
