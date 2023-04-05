@@ -26,10 +26,26 @@
   <!-- Jquery CDN and external script link-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="/assets/js/resetvalidate.js"></script>
+  <script src="/assets/js/dark.js"></script>
 </head>
 <body>
-  <!-- Email Form -->
   <div class="bg">
+    <!-- Navbar -->
+    <nav role="navigation">
+      <div id="menuToggle">
+        <input type="checkbox" />
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+          <a href="/home/about"><li>About</li></a>
+          <a href="/register/signup"><li>Register</li></a>
+          <a id="mode"><li>Change Theme</li></a>
+        </ul>
+      </div>
+    </nav>
+    <!-- Email Form -->
     <div class="container box">
       <div class="content innerbox">
         <div><img src="/assets/images/icon.png" class="icon" alt="logo"></div>

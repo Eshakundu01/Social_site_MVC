@@ -21,7 +21,7 @@ class Post extends FrameWork {
     // $this->view('home');
 
     if (isset($_POST['submit'])) {
-      $id = date("H-i-s-") . rand(100,1000);
+      $id = date("d-m-y-H-i-s-") . rand(100,1000);
 
       if (isset($_FILES['upload']['name'])) {
         $image = $_FILES['upload']['name'];

@@ -31,10 +31,11 @@ $tuples = $view->allPost();
   <link rel="stylesheet" href="/assets/css/home.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="/assets/js/home.js"></script>
+  <script src="/assets/js/dark.js"></script>
 </head>
 <body>
   <!-- navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <a class="navbar-brand font-weight-bold status-menu-item" href="/home/dashboard">
       <img src="/assets/images/icon.png" width="70" height="70" class="rounded-circle d-inline-block align-center" alt="logo">
       Lunamates
@@ -56,8 +57,9 @@ $tuples = $view->allPost();
             Settings
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/home/profile">Profile</a>
-            <a class="dropdown-item text-danger" href="/home/delete">Delete Account</a>
+            <a class="dropdown-item" href="/home/profile"><i class="fa fa-user pr-2"></i>Profile</a>
+            <a class="dropdown-item" id="theme"><i class="fa fa-adjust pr-2"></i>Change Theme</a>
+            <a class="dropdown-item" href="/home/about"><i class="fa fa-info pr-2"></i>About</a>
           </div>
         </li>
         <li class="nav-item">
@@ -75,8 +77,10 @@ $tuples = $view->allPost();
     <div class="container">
       <div class="row">
         <!-- Welcome message -->
-        <div class="col-lg-3 col-md-6 col-sm mt-5 py-3 greetbox text-center">
-          <div><img src="/assets/images/hello.gif" alt="hello" class="greet"></div>
+        <div class="col-lg-3 col-md-6 col-sm py-3 greetbox text-center">
+          <div>
+            <img src="/assets/images/hello.gif" alt="hello" class="greet">
+          </div>
           <div class="font-weight-bold status-menu-item">
             <?php 
             if (isset($_SESSION['user']['name'])) {
@@ -91,11 +95,11 @@ $tuples = $view->allPost();
         </div>
 
         <!-- Create a new post and post the same-->
-        <div class="col-lg-9 col-md-6 col-sm mt-5">
+        <div class="col-lg-9 col-md-6 col-sm">
           <div>
             <div class="status box">
               <div class="status-menu">
-                <h3 class="status-menu-item">Post Here</h3>
+                <h2 class="album-title">Post Here</h2>
               </div>
               <form action="/post/share" method="POST" enctype="multipart/form-data">
                 <div class="status-main">
@@ -149,16 +153,21 @@ $tuples = $view->allPost();
                 </div>
               </div>
               <div class="album-content">
-                <p class="m-0 p-1"><?php echo $tuples[$i]['content'];?></p>
+                <p class="m-0 p-1 album-date"><?php echo $tuples[$i]['content'];?></p>
                 <div class="album-photos">
-                  <img src="<?php if ($tuples[$i]['image']) {
-                    echo '/assets/uploads/' . $tuples[$i]['image'];} 
-                  ?>" alt="" class="album-photo" />
+                  <?php
+                  if ($tuples[$i]['image']) {
+                  ?>
+                  <img src="<?php echo '/assets/uploads/' . $tuples[$i]['image'];?>"
+                  class="album-photo" />
+                  <?php
+                  }
+                  ?>
                 </div>
                 <div class="album-photos">
                   <?php if ($tuples[$i]['video']) {
                   ?>
-                    <video width="400" controls>
+                    <video class="clip" controls>
                       <source src="<?php echo '/assets/video/' . $tuples[$i]['video'];?>" />
                     </video>
                   <?php
@@ -182,12 +191,12 @@ $tuples = $view->allPost();
                 }
               }
             ?>
+            <button id="load" class="status-share">Load More</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

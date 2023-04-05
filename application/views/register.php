@@ -24,10 +24,27 @@
   <!-- External CSS and Javascript files -->
   <link rel="stylesheet" href="/assets/css/styles.css">
   <script src="/assets/js/formvalidation.js"></script>
+  <script src="/assets/js/dark.js"></script>
 </head>
 <body>
-  <!-- Registration Form -->
   <div class="bg">
+    <!-- Navbar -->
+    <nav role="navigation">
+      <div id="menuToggle">
+        <input type="checkbox" />
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+          <a href="/home/about"><li>About</li></a>
+          <a href="/register/signup"><li>Register</li></a>
+          <a id="mode"><li>Change Theme</li></a>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Registration Form -->
     <div class="container">
       <div class="content">
         <div><img src="/assets/images/icon.png" class="icon" alt="logo"></div>

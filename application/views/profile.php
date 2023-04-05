@@ -25,6 +25,7 @@ $profile_obj = new Profile();
   <link rel="stylesheet" href="/assets/css/home.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="/assets/js/profile.js"></script>
+  <script src="/assets/js/dark.js"></script>
 </head>
 <body>
   <!-- navbar -->
@@ -51,7 +52,8 @@ $profile_obj = new Profile();
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/home/profile">Profile</a>
-            <a class="dropdown-item text-danger" href="/home/delete">Delete Account</a>
+            <a class="dropdown-item" id="theme"><i class="fa fa-adjust pr-2"></i>Change Theme</a>
+            <a class="dropdown-item" href="/home/about"><i class="fa fa-info pr-2"></i>About</a>
           </div>
         </li>
         <li class="nav-item">
@@ -120,7 +122,7 @@ $profile_obj = new Profile();
         </form>
       </div>
       <!-- Personal details -->
-      <div class="bg-light mt-2 p-4 detailsbox">
+      <div class="mt-2 p-4 detailsbox">
         <div class="header">
           <span class="heading">PERSONAL DETAILS</span>
           <button id="edit" class="btn btn-primary mb-2 ml-2">EDIT</button>

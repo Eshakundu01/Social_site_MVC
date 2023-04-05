@@ -25,10 +25,26 @@
   <link rel="stylesheet" href="/assets/css/styles.css">
   <!-- Custom jquery -->
   <script src="/assets/js/loginvalidate.js"></script>
+  <script src="/assets/js/dark.js"></script>
 </head>
 <body>
-  <!-- Login Form -->
   <div class="bg">
+    <!-- Navbar -->
+    <nav role="navigation">
+      <div id="menuToggle">
+        <input type="checkbox" />
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+          <a href="/home/about"><li>About</li></a>
+          <a href="/register/signup"><li>Register</li></a>
+          <div id="mode"><li>Change Theme</li></div>
+        </ul>
+      </div>
+    </nav>
+    <!-- Login Form -->
     <div class="container">
       <div class="content">
         <div><img src="/assets/images/icon.png" class="icon" alt="logo"></div>

@@ -132,11 +132,11 @@ class Home extends FrameWork {
 
   /**
    * 
-   * It views the delete page which confirms user to delete account.
+   * It views the about page which provides a details about the website.
    * 
    * @return void
    */
-  public function delete() {
-    $this->view('delete');
+  public function about() {
+    $this->view('about');
   }
 }
