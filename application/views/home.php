@@ -121,7 +121,7 @@ $tuples = $view->allPost();
                     <input type="file" id="upload" name="upload" class="uploadbtn" accept=".png, .jpg, .jpeg"/>
                   </span>
                   <span>
-                    <label for="video">
+                    <label for="video" title="Upload video less than 1MB">
                       <img src="/assets/images/video.png" id="videofile" alt="add-video" class="status-action"/>
                       <i id="select" class="fa fa-check text-success tick"></i>
                     </label>

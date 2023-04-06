@@ -1,3 +1,10 @@
+<?php
+
+require_once 'application/controllers/Home.php';
+
+$object = new Home();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +57,7 @@
         <div><img src="/assets/images/icon.png" class="icon" alt="logo"></div>
         <h2 class="heading">WELCOME</h2>
         <p>Enter your emailid and password to connect with others...</p>
-        <form action="/home/index" method="POST">
+        <form action="/home/index" method="POST" id="login-form">
           <div class="input">
             EMAILID: <span class="required">*</span>
             <input type="text" name="email" id="email" class="entries" placeholder="Enter email address" required>
@@ -70,6 +77,17 @@
             <a href="/register/signup" class="link">Register Now</a>
           </div>
         </form>
+
+        <h3>OR</h3>
+        <!-- Google login -->
+        <div class="google-btn">
+          <a href="<?php echo $object->login(); ?>" class="sign">
+            <div class="google-icon-wrapper">
+              <img class="google-icon" src="/assets/images/google-logo.png"/>
+            </div>
+            <p id="btn-text"><b>Sign in with google</b></p>
+          </a>
+        </div>
       </div>
     </div>
   </div>

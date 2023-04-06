@@ -1,5 +1,7 @@
 <?php
 
+require_once 'vendor/autoload.php';
+require_once 'config/secret.php';
 /**
  * 
  * Home is a controller which extends properties from FrameWork class.
@@ -85,7 +87,6 @@ class Home extends FrameWork {
         if ($result) {
           $_SESSION['users'] = [
             'name' => $result['name'],
-            'photo' => $result['userpic'],
             'birthday' => $result['dob'],
             'gender' => $result['gender'],
             'photo' => $result['userpic'],
@@ -123,10 +124,10 @@ class Home extends FrameWork {
    */
   public function profile() {
     session_start();
-    if (!(isset($_SESSION['user']['name']))) {
-      $this->redirect('home/index');
-    } else {
+    if (isset($_SESSION['user']['name'])) {
       $this->view('profile');
+    } else {
+      $this->redirect('home/index');
     }
   }
 
@@ -138,5 +139,70 @@ class Home extends FrameWork {
    */
   public function about() {
     $this->view('about');
+  }
+
+  public function login() {
+    $client = new Google_Client();
+    $client->setClientId(CLIENTID);
+    $client->setClientSecret(CLIENTSECRET);
+    $client->setRedirectUri(REDIRECTURL);
+    $client->addScope("email");
+    $client->addScope("profile");
+
+    if (isset($_GET['code'])) {
+      session_start();
+      echo $_GET["code"];
+      $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+      $client->setAccessToken($token);
+
+      $auth = new Google_Service_Oauth2($client);
+      $info = $auth->userinfo->get();
+
+      $mail = $info->email;
+      $name = $info->name;
+
+      if ($this->model('UserDatabase')) {
+        $connect = new UserDatabase();
+        if ($connect->emailExist($mail)) {
+          $result = $connect->getAllData($mail);
+          if ($result) {
+            $_SESSION['user'] = [
+              'name' => $result['name'],
+              'mail' => $mail,
+              'photo' => $result['userpic'],
+              'birthday' => $result['dob'],
+              'gender' => $result['gender'],
+              'coverPhoto' => $result['coverpic'],
+              'home' => $result['place'],
+              'about' => $result['about']
+            ];
+            $this->redirect('home/dashboard');
+          }
+        } else {
+          $password = Password::encrypt(rand(10000000,99999999));
+
+          $result = $connect->insertUserInfo($name, $mail, "", "", $password);
+          if ($result) {
+            $data = $connect->getAllData($mail);
+            if ($data) {
+              $_SESSION['user'] = [
+                'name' => $name,
+                'mail' => $mail,
+                'photo' => $data['userpic'],
+                'birthday' => $data['dob'],
+                'gender' => $data['gender'],
+                'coverPhoto' => $data['coverpic'],
+                'home' => $data['place'],
+                'about' => $data['about']
+              ];
+              $this->redirect('home/dashboard');
+            }
+          }
+        }
+      }
+
+    } else {
+      return $client->createAuthUrl();
+    }
   }
 }
