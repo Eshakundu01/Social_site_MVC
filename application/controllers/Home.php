@@ -16,8 +16,6 @@ class Home extends FrameWork {
    * @return void
    */
   public function index() {
-    $this->view('login');
-
     if (isset($_POST['login'])) {
       session_start();
       if ($this->model('UserDatabase')) {
@@ -37,6 +35,8 @@ class Home extends FrameWork {
           $this->redirect('home/dashboard');
         }
       }
+    } else {
+      $this->view('login');
     }
   }
 
