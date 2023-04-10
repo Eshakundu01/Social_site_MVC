@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/assets/css/home.css">
-  <!-- Jquery link and Jquery Cookie link -->
+  <!-- Jquery CDN and Jquery Cookie CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
   <script src="/assets/js/dark.js"></script>
@@ -61,7 +61,7 @@
   <!-- Body content -->
   <div class="main-container">
     <div class="container about-box">
-      <h1 class="heading text-center">About Us</h1>
+      <h1 class="heading text-center">Cookies Policy</h1>
       <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit
         , sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Purus non enim praesent elementum. Platea dictumst quisque sagittis

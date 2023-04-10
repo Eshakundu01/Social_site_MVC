@@ -79,4 +79,15 @@ $(function () {
       if (callNow) callback.apply(context, args);
     };
   }
+
+  $("#g-btn").hover(function() {
+    $.ajax ({
+      url: '/home/login',
+      dataType: 'json',
+
+      success:function(response) {
+        $("#sign-in").attr("href",response.url);
+      }
+    });
+  });
 });

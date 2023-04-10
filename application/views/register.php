@@ -17,14 +17,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Moon+Dance&display=swap" rel="stylesheet">
-  <!-- Jquery CDN -->
+  <!-- Jquery CDN and Jquery Cookie CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-  <!-- Font Awesome CDN -->
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/3414b53c72.js" crossorigin="anonymous"></script>
   <!-- External CSS and Javascript files -->
   <link rel="stylesheet" href="/assets/css/styles.css">
   <script src="/assets/js/formvalidation.js"></script>
   <script src="/assets/js/dark.js"></script>
+  <script src="/assets/js/cookies.js"></script>
 </head>
 <body>
   <div class="bg">
@@ -47,7 +49,6 @@
     <!-- Registration Form -->
     <div class="container">
       <div class="content">
-        <div><img src="/assets/images/icon.png" class="icon" alt="logo"></div>
         <h2 class="heading">JOIN US!</h2>
         <p>Fill in the details below to connect with us...</p>
 
@@ -126,5 +127,29 @@
       </div>
     </div>
   </div>
+
+  <!-- Cookies box -->
+  <?php if (!isset($_COOKIE['cookies_consent'])) { ?>
+    <div class="cookie-wrapper">
+      <div class="title-box">
+        <i class="fa fa-cookie-bite"></i>
+        <h3>Cookies Consent</h3>
+      </div>
+      <div class="buttons">
+        <div class="info">
+          <p>
+            This website use cookies to help you have a superior and more relevant
+            browsing experience on the website. <a href="/home/cookie"> Read more...</a>
+          </p>
+        </div>
+        <div class="info">
+          <button class="switch" id="accept">Accept</button>
+        </div>
+        <div class="info">
+          <button class="switch" id="decline">Decline</button>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
 </body>
 </html>

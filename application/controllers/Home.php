@@ -141,6 +141,13 @@ class Home extends FrameWork {
     $this->view('about');
   }
 
+  /**
+   * This function uses the google api and checks the code created on choosing a
+   * google account is present or not. If it is present then redirects to
+   * dashboard otherwise opens the sign in page with google.
+   *
+   * @return void
+   */
   public function login() {
     $client = new Google_Client();
     $client->setClientId(CLIENTID);
@@ -151,7 +158,6 @@ class Home extends FrameWork {
 
     if (isset($_GET['code'])) {
       session_start();
-      echo $_GET["code"];
       $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
       $client->setAccessToken($token);
 
@@ -177,6 +183,7 @@ class Home extends FrameWork {
               'about' => $result['about']
             ];
             $this->redirect('home/dashboard');
+            $link['url'] = false;
           }
         } else {
           $password = Password::encrypt(rand(10000000,99999999));
@@ -196,13 +203,26 @@ class Home extends FrameWork {
                 'about' => $data['about']
               ];
               $this->redirect('home/dashboard');
+              $link['url'] = false;
             }
           }
         }
       }
 
     } else {
-      return $client->createAuthUrl();
+      $link['url'] = $client->createAuthUrl();
     }
+
+    echo json_encode($link);
+  }
+
+  /**
+   * 
+   * It views the cookie policy page which provides a details about the cookies.
+   * 
+   * @return void
+   */
+  public function cookie() {
+    $this->view('cookies');
   }
 }

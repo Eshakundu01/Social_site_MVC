@@ -24,14 +24,19 @@ $tuples = $view->allPost();
   <!-- Favicon -->
   <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
   <!-- Font Awesome link -->
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <script src="https://kit.fontawesome.com/3414b53c72.js" crossorigin="anonymous"></script>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/assets/css/home.css">
+  <!-- Jquery CDN and Jquery Cookie CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <!-- Sharing the whole website link -->
+  <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6432ac8e7e455e00129f0f3a&product=sticky-share-buttons&source=platform" async="async"></script>
   <script src="/assets/js/home.js"></script>
   <script src="/assets/js/dark.js"></script>
+  <script src="/assets/js/cookies.js"></script>
 </head>
 <body>
   <!-- navbar -->
@@ -106,7 +111,7 @@ $tuples = $view->allPost();
                   <img src="<?php 
                   if (isset($_SESSION['pic'])) {
                     echo '/assets/uploads/' . $_SESSION['pic'];
-                  } else {
+                  } elseif (isset($_SESSION['user']['photo'])) {
                     echo '/assets/uploads/' . $_SESSION['user']['photo'];
                   } 
                   ?>" class="status-img">
@@ -176,13 +181,8 @@ $tuples = $view->allPost();
                 </div>
               </div>
               <div class="album-actions">
-                <a id="like" class="album-action">
-                  <i class="fa fa-heart"></i>
-                </a>
-                <a id="comment" class="album-action">
-                  <i class="fa fa-comment"></i>
-                </a>
-                <a id="share" class="album-action">
+                <a id="share" target="_blank"
+                href="https://www.twitter.com/share?url=<?php //echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>&text=<?php echo $tuples[$i]['content']; ?>" class="album-action">
                   <i class="fa fa-share"></i>
                 </a>
               </div>
@@ -192,11 +192,36 @@ $tuples = $view->allPost();
               }
             ?>
             <button id="load" class="status-share">Load More</button>
+            <div class="sharethis-sticky-share-buttons"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Cookies box -->
+  <?php if (!isset($_COOKIE['cookies_consent'])) { ?>
+    <div class="cookie-wrapper">
+      <div class="title-box">
+        <i class="fa fa-cookie-bite"></i>
+        <h3>Cookies Consent</h3>
+      </div>
+      <div class="buttons">
+        <div class="info">
+          <p>
+            This website use cookies to help you have a superior and more relevant
+            browsing experience on the website. <a href="/home/cookie"> Read more...</a>
+          </p>
+        </div>
+        <div class="info">
+          <button class="switch" id="accept">Accept</button>
+        </div>
+        <div class="info">
+          <button class="switch" id="decline">Decline</button>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
 
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

@@ -18,14 +18,17 @@ $profile_obj = new Profile();
   <!-- Favicon -->
   <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
   <!-- Font Awesome link -->
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <script src="https://kit.fontawesome.com/3414b53c72.js" crossorigin="anonymous"></script>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/assets/css/home.css">
+  <!-- Jquery CDN and Jquery Cookie CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
   <script src="/assets/js/profile.js"></script>
   <script src="/assets/js/dark.js"></script>
+  <script src="/assets/js/cookies.js"></script>
 </head>
 <body>
   <!-- navbar -->
@@ -239,12 +242,29 @@ $profile_obj = new Profile();
     </div>
   </div>
 
-  <!-- Footer -->
-  <!-- <footer class="foot">
-    <p class="content text-center p-3">For any help send a mail to the given mail address
-      <a href="mailto:Lunamates<esha.kundu@innoraft.com>">esha.kundu@innoraft.com</a>
-    </p>
-  </footer> -->
+  <!-- Cookies box -->
+  <?php if (!isset($_COOKIE['cookies_consent'])) { ?>
+    <div class="cookie-wrapper visible">
+      <div class="title-box">
+        <i class="fa fa-cookie-bite"></i>
+        <h3>Cookies Consent</h3>
+      </div>
+      <div class="buttons">
+        <div class="info">
+          <p>
+            This website use cookies to help you have a superior and more relevant
+            browsing experience on the website. <a href="/home/cookie"> Read more...</a>
+          </p>
+        </div>
+        <div class="info">
+          <button class="switch" id="accept">Accept</button>
+        </div>
+        <div class="info">
+          <button class="switch" id="decline">Decline</button>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
 
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
