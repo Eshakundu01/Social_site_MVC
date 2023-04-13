@@ -1,0 +1,421 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+@import url(https://fonts.googleapis.com/css?family=Poppins:300;400;500;600&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Moon+Dance&display=swap);
+
+:root {
+  --color: #ffff;
+  --body: #fff;
+  --text: #2f2e2e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.bg {
+  background-image: url('../images/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 45px;
+  height: 100vh;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.content {
+  background-color: var(--color);
+  padding: 25px;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.heading {
+  color: #5d386c;
+  font-size: 45px;
+  margin: 10px 0;
+  font-family: 'Dancing Script';
+}
+
+.content p {
+  color: rgb(143, 137, 137);
+  margin: 0;
+  padding: 5px 0;
+  font-family: 'Moon Dance';
+  font-size: 30px;
+}
+
+.input {
+  font-family: 'Moon Dance';
+  font-size: 20px;
+  color: #9c4782;
+  padding: 5px;
+  font-weight: bolder;
+}
+
+.entries {
+  padding: 15px 10px;
+  width: 65%;
+  font-size: 15px;
+  color: rgb(143, 137, 137);
+}
+
+.error {
+  color: rgb(204, 14, 14);
+  padding: 5px;
+}
+
+.connect {
+  padding: 5px;
+  font-family: 'Moon Dance';
+  font-size: 25px;
+  color: rgb(143, 137, 137);
+}
+
+.forgot {
+  text-align: right;
+  padding-right: 9%;
+}
+
+.link {
+  color: #9c4782;
+  text-decoration: underline;
+}
+
+.btn {
+  border: 2px solid #111;
+  color: #111;
+  background: linear-gradient(to right,#4a3060,#885e8e,#201e45);
+  cursor: pointer;
+  padding: 10px 35px;
+  font-size: 25px;
+  font-weight: 900;
+  font-family: 'Moon Dance';
+  border-radius: 45px;
+}
+
+.gender {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: inline;
+}
+
+.gender li {
+  display: inline-block;
+  color: #4a3060;
+  font-size: 30px;
+  font-family: 'Moon Dance';
+}
+
+.select {
+  accent-color: #885e8e;
+}
+
+.back {
+  text-decoration: none;
+}
+
+.button {
+  padding: 10px 0;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+}
+
+.login:disabled {
+  opacity: 0.6;
+}
+
+.box {
+  padding: 75px 0;
+}
+
+.otp{
+  display:inline-block;
+  width:50px;
+  height:50px;
+  text-align:center;
+}
+
+.innerbox{
+  position: relative;
+}
+
+.load {
+  display: none;
+  width: 90px;
+  position: absolute;
+  top: 50%;
+  left: 46%;
+}
+
+.loadbox {
+  margin: 0;
+}
+
+.input-box {
+  color: #9c4782;
+}
+
+.required {
+  font-size: 15px;
+  color: rgb(168, 25, 25);
+  position: relative;
+  top: -10px;
+}
+
+#menuToggle {
+  display: block;
+  position: absolute;
+  top: 48px;
+  left: 35px;  
+  z-index: 1;
+}
+
+#menuToggle a {
+  text-decoration: none;
+  color: #9c4782; 
+  transition: color 0.3s ease;
+}
+
+#menuToggle a:hover {
+  color: #4a3060;
+}
+
+#mode {
+  color: #9c4782; 
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+#menuToggle input {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px; 
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+}
+
+#menuToggle span {
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #cdcdcd;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;  
+}
+
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+
+#menuToggle input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #9c4782;
+}
+
+#menuToggle input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu {
+  position: absolute;
+  width: 300px;
+  margin: -50px;
+  padding: 50px;
+  padding-top: 75px;  
+  background-color: var(--color);
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased; 
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu.dark {
+  background-color: #232323;
+}
+
+#menu li {
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+#menuToggle input:checked ~ ul {
+  transform: none;
+}
+
+.modal-content {
+  background-color: var(--color);
+}
+
+.google-btn {
+  width: 100%;
+  height: 50px;
+  background-color: #4285f4;
+  text-decoration: none;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+}
+
+.sign {
+  text-decoration: none;
+}
+
+.google-icon-wrapper {
+  position: absolute;
+  margin-top: 1px;
+  margin-left: 1px;
+  width: 48px;
+  height: 48px;
+  border-radius: 2px;
+  background-color: var(--color);
+}
+
+.google-icon {
+  position: absolute;
+  margin-top: 9px;
+  margin-left: -17px;
+  width: 35px;
+  height: 35px;
+}
+
+#btn-text {
+  color: var(--color);
+  font-size: 20px;
+  letter-spacing: 0.2px;
+  font-family: "Roboto";
+  padding: 13px;
+  padding-left: 45px;
+}
+
+.google-btn:hover {
+  box-shadow: 0 0 6px #4285f4;
+}
+
+.cookie-wrapper {
+  background: var(--body);
+  padding: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  position: fixed;
+  bottom: 0;
+}
+
+.title-box {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+  color: #4070f4;
+  margin-bottom: 5px;
+}
+
+.title-box i {
+  font-size: 32px;
+}
+
+.title-box h3 {
+  font-size: 24px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+.info {
+  padding: 5px;
+}
+
+.info p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text);
+  margin: 0;
+}
+
+.info p a {
+  color: #4070f4;
+  text-decoration: none;
+}
+
+.info p a:hover {
+  text-decoration: underline;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+}
+
+.switch {
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4070f4;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.switch:hover {
+  background-color: #031bf1;
+}
+
+.dark {
+  --color: #232323;
+  --body: #2f2e2e;
+  --text: #fff;
+}
+
+@media screen and (max-width:568px) {
+  .container {
+    max-width: 300px;
+  }
+
+  .heading {
+    font-size: 35px;
+    margin: 5px 0;
+  }
+  
+  .content p {
+    padding: 0;
+    font-size: 23px;
+  }
+  
+  .input {
+    padding: 5px;
+  }
+  
+  .btn {
+    margin-bottom: 20px;
+  }
+}

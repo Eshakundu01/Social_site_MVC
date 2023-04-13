@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lunamates{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/assets/css/styles.css">
+{% endblock %}
+
+{% block javascripts %}
+<script src="/assets/js/resetvalidate.js"></script>
+<script src="/assets/js/dark.js"></script>
+<script src="/assets/js/cookies.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="bg">
+  {# Navbar #}
+  <nav role="navigation">
+    <div id="menuToggle">
+      <input type="checkbox" />
+      <span></span>
+      <span></span>
+      <span></span>
+
+      <ul id="menu">
+        <a href="/about"><li>About</li></a>
+        <a href="/register"><li>Register</li></a>
+        <a id="mode"><li>Change Theme</li></a>
+      </ul>
+    </div>
+  </nav>
+  {# Email Form #}
+  <div class="container box">
+    <div class="content innerbox">
+      <h2 class="heading">Forgot Password</h2>
+      <p>Enter your registered email address to receive an OTP</p>
+      <form>
+        <div>
+          <span class="input">EMAILID:<span class="required">*</span></span>
+          <input type="text" name="mail" id="mail" class="entries place" placeholder="Enter email address" required>
+        </div>
+        <span id="mail-error" class="error"></span>
+
+        <div class="button">
+          <input type="button" name="submit" id="submit" class="btn" value="SUBMIT">
+          <a href="/" class="btn text-dark text-decoration-none">GO BACK</a>
+        </div>
+      </form>
+
+      {# OTP Modal #}
+      <div class="modal fade" id="otpbox" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center input">OTP VALIDATION</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <form action="/reset/action" method="POST">
+                <div id="otp-error" class="error"></div>
+                <input class="otp" type="text" id="pin1" oninput='digitValidate(this)' onkeyup="clickEvent(this,'pin2')" maxlength=1 >
+                <input class="otp" type="text" id="pin2" oninput='digitValidate(this)' onkeyup="clickEvent(this,'pin3')" maxlength=1 >
+                <input class="otp" type="text" id="pin3" oninput='digitValidate(this)' onkeyup="clickEvent(this,'pin4')" maxlength=1 >
+                <input class="otp" type="text" id="pin4" oninput='digitValidate(this)' maxlength=1 >
+                <div class="mt-4 pt-2 border-secondary border-top">
+                  <input type="button" name="resend" id="resend" value="RESEND" class="btn" onclick="this.form.reset();">
+                  <input type="button" name="verified" id="verified" value="VERIFY" class="btn" data-dismiss="modal">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Reset Password Modal #}
+      <div class="modal fade" id="resetbox" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title text-center heading">Reset Your Password</h2> 
+            </div>
+            <div class="modal-body">
+              <p>Enter your new password below...</p>
+              <form>
+                <div class="input-box">
+                  <span class="input">NEW PASSWORD:</span>
+                  <input type="password" name="key" id="key" class="entries" placeholder="Enter your new password" required>
+                  <i id="view" class="fa fa-eye"></i>
+                </div>
+                <div id="pass-error" class="error"></div>
+
+                <div class="input-box">
+                  <span class="input">CONFIRM PASSWORD:</span>
+                  <input type="password" name="pass" id="pass" class="entries" placeholder="Re-enter your new password" required>
+                  <i id="display" class="fa fa-eye"></i>
+                </div>
+                <div id="key-error" class="error"></div>
+                
+                <div class="mt-4 pt-2 border-secondary border-top">
+                  <input type="button" name="reset" id="reset" value="RESET" class="btn" data-dismiss="modal">
+                  <a href="/" class="btn text-dark text-decoration-none">GO BACK</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loadbox">
+      <img src="/assets/images/loader.gif" id="loading" alt="loader" class="load">
+    </div>
+  </div>
+</div>
+{% endblock %}
